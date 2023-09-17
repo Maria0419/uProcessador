@@ -14,8 +14,8 @@ architecture a_ula of ula is
 begin
     saida <= x + y when op = "00" else
              x - y when op = "01" else
-             "0000000000000001" when op = "10" and x>=y else
-             x * y when op = "11" else
+             "0000000000000001" when op = "10" and x>y else
+             "0000000000000001" when op = "11" and x = y else
              "0000000000000000";
 
 
