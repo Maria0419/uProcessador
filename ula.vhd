@@ -11,12 +11,17 @@ entity ula is
 end ula;
 
 architecture a_ula of ula is
+
+    signal parc : unsigned(31 downto 0);
+
 begin
+    parc <= x * y when op = "10" else
+            "00000000000000000000000000000000";
+
     saida <= x + y when op = "00" else
              x - y when op = "01" else
-             "0000000000000001" when op = "10" and x>y else
-             "0000000000000001" when op = "11" and x = y else
+             parc(15 downto 0) when op = "10" else
+             x xor y when op = "11" else
              "0000000000000000";
-
 
 end architecture;
