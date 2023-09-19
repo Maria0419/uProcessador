@@ -1,0 +1,7 @@
+v 4
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\ula_tb.vhd" "7e1c10b5eff28f79c88cba2847d7dd7513c787eb" "20230919003133.378":
+  entity ula_tb at 1( 0) + 0 on 13;
+  architecture a_ula_tb of ula_tb at 8( 100) + 0 on 14;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\ula.vhd" "da2c36fba22bf3c7b9276895f357e14320100285" "20230919003118.934":
+  entity ula at 1( 0) + 0 on 11;
+  architecture a_ula of ula at 13( 245) + 0 on 12;
