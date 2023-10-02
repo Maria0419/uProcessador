@@ -20,6 +20,6 @@ begin
                "00100000" when in_bus = "101" else
                "01000000" when in_bus = "110" else
                "10000000" when in_bus = "111" else
-               "00000000"
+               "00000000";
 
 end architecture;

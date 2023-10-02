@@ -22,6 +22,6 @@ begin
                 data5 when sel = "101" else
                 data6 when sel = "110" else
                 data7 when sel = "111" else
-                "000000000000000";
+                "0000000000000000";
 
 end architecture;
