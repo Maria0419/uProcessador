@@ -4,13 +4,14 @@ use ieee.numeric_std.all;
 
 entity toplevel is
     port(
-        wr_en, rst, clk, mux1_selection : in std_logic;
-        constant_mux1 : in unsigned(15 downto 0);
-        ula_o : out unsigned(15 downto 0);
-        ula_operation : in unsigned(1 downto 0);
-        read_reg0 : in unsigned(2 downto 0);
+        wr_en, rst, clk : in std_logic;             -- sinais de controle e clock
+        mux1_selection : in std_logic;              -- selecao do mux ('0' -> registrador, '1' -> constante)
+        constant_mux1 : in unsigned(15 downto 0);   -- constante a ser passada para a ULA
+        ula_o : out unsigned(15 downto 0);          -- saida da ULA
+        ula_operation : in unsigned(1 downto 0);    -- operacao da ULA
+        read_reg0 : in unsigned(2 downto 0);        -- registradores de leitura
         read_reg1 : in unsigned(2 downto 0);
-        write_reg : in unsigned(2 downto 0)
+        write_reg : in unsigned(2 downto 0)         -- registrador de escrita
     );
 end entity;
 

@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- decodifica 3 bits em um sinal de 8 bits com 1 bit ativo
 entity decoder_3to8 is
     port (
         in_bus  : in unsigned (2 downto 0);

@@ -1,31 +1,31 @@
 v 4
-file . "toplevel_tb.vhd" "0842cfc69910d6b239855d59460c6ad7374cf9d8" "20231002035047.500":
-  entity toplevel_tb at 1( 0) + 0 on 501;
-  architecture a_toplevel_tb of toplevel_tb at 8( 105) + 0 on 502;
-file . "toplevel.vhd" "ea75af422f28510d9594585f9e4c11aef5bf73b1" "20231002035047.192":
-  entity toplevel at 1( 0) + 0 on 499;
-  architecture a_toplevel of toplevel at 17( 467) + 0 on 500;
-file . "banco_reg.vhd" "4bd5276374019761acdf98ac2ef98b18ba069161" "20231002035046.367":
-  entity banco_reg at 1( 0) + 0 on 493;
-  architecture a_banco_reg of banco_reg at 14( 341) + 0 on 494;
-file . "reg_16bits.vhd" "449a57ca349eaaa199a62fa31b98027f3589b47c" "20231002035046.151":
-  entity reg_16bits at 1( 0) + 0 on 491;
-  architecture a_reg_16bits of reg_16bits at 13( 270) + 0 on 492;
-file . "mux_8x1.vhd" "f75502b9ef539dae410eceab8dbae7b6e6282862" "20231002035045.699":
-  entity mux_8x1 at 1( 0) + 0 on 487;
-  architecture a_mux_8x1 of mux_8x1 at 13( 310) + 0 on 488;
-file . "ula.vhd" "da2c36fba22bf3c7b9276895f357e14320100285" "20231002035045.271":
-  entity ula at 1( 0) + 0 on 483;
-  architecture a_ula of ula at 13( 245) + 0 on 484;
-file . "ula_tb.vhd" "8f8260545db703acf6c0a386cbd4b879ea0b6260" "20231002035045.482":
-  entity ula_tb at 1( 0) + 0 on 485;
-  architecture a_ula_tb of ula_tb at 8( 100) + 0 on 486;
-file . "decoder_3to8.vhd" "ea82938260c5320477adf5314fd6feb8091220e2" "20231002035045.941":
-  entity decoder_3to8 at 1( 0) + 0 on 489;
-  architecture a_decoder_3to8 of decoder_3to8 at 12( 229) + 0 on 490;
-file . "banco_reg_tb.vhd" "4e5322c36e102e8c4cdcd2866118fb57d413aa79" "20231002035046.676":
-  entity banco_reg_tb at 1( 0) + 0 on 495;
-  architecture a_banco_reg_tb of banco_reg_tb at 8( 106) + 0 on 496;
-file . "mux2x1.vhd" "f48f7577d864b37ce52d5063b4b85bf3f9f168c5" "20231002035046.953":
-  entity mux2x1 at 1( 0) + 0 on 497;
-  architecture a_mux2x1 of mux2x1 at 13( 244) + 0 on 498;
+file . "toplevel_tb.vhd" "34f8cc30a69931827552d38d177e2a326eae3416" "20231004015851.089":
+  entity toplevel_tb at 1( 0) + 0 on 561;
+  architecture a_toplevel_tb of toplevel_tb at 8( 105) + 0 on 562;
+file . "toplevel.vhd" "8cdff4995cbb95c572e25cb100d9091a3ca456dc" "20231004015850.929":
+  entity toplevel at 1( 0) + 0 on 559;
+  architecture a_toplevel of toplevel at 18( 759) + 0 on 560;
+file . "banco_reg.vhd" "2bd607987fc4572d255e02021d732813821b9196" "20231004015850.576":
+  entity banco_reg at 1( 0) + 0 on 553;
+  architecture a_banco_reg of banco_reg at 14( 539) + 0 on 554;
+file . "reg_16bits.vhd" "449a57ca349eaaa199a62fa31b98027f3589b47c" "20231004015850.472":
+  entity reg_16bits at 1( 0) + 0 on 551;
+  architecture a_reg_16bits of reg_16bits at 13( 270) + 0 on 552;
+file . "mux_8x1.vhd" "f75502b9ef539dae410eceab8dbae7b6e6282862" "20231004015850.252":
+  entity mux_8x1 at 1( 0) + 0 on 547;
+  architecture a_mux_8x1 of mux_8x1 at 13( 310) + 0 on 548;
+file . "ula.vhd" "da2c36fba22bf3c7b9276895f357e14320100285" "20231004015850.018":
+  entity ula at 1( 0) + 0 on 543;
+  architecture a_ula of ula at 13( 245) + 0 on 544;
+file . "ula_tb.vhd" "8f8260545db703acf6c0a386cbd4b879ea0b6260" "20231004015850.137":
+  entity ula_tb at 1( 0) + 0 on 545;
+  architecture a_ula_tb of ula_tb at 8( 100) + 0 on 546;
+file . "decoder_3to8.vhd" "49066b7a0ee7b42c9ab8da24854ce35414c6f890" "20231004015850.362":
+  entity decoder_3to8 at 1( 0) + 0 on 549;
+  architecture a_decoder_3to8 of decoder_3to8 at 13( 289) + 0 on 550;
+file . "banco_reg_tb.vhd" "4e5322c36e102e8c4cdcd2866118fb57d413aa79" "20231004015850.692":
+  entity banco_reg_tb at 1( 0) + 0 on 555;
+  architecture a_banco_reg_tb of banco_reg_tb at 8( 106) + 0 on 556;
+file . "mux2x1.vhd" "f48f7577d864b37ce52d5063b4b85bf3f9f168c5" "20231004015850.821":
+  entity mux2x1 at 1( 0) + 0 on 557;
+  architecture a_mux2x1 of mux2x1 at 13( 244) + 0 on 558;

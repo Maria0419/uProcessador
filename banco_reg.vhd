@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 entity banco_reg is
     port (
-        rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);
-        wr_data : in unsigned (15 downto 0);
-        out_data0, out_data1 : out unsigned (15 downto 0);
-        wr_en, clk, rst : in std_logic
+        rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);    -- numero dos regs (leitura e escrita)
+        wr_data : in unsigned (15 downto 0);                    -- dados a serem escritos
+        out_data0, out_data1 : out unsigned (15 downto 0);      -- dados armazenados nos regs de leitura
+        wr_en, clk, rst : in std_logic                          -- write enable, clock e reset dos regs
     );
 end banco_reg;
 
@@ -49,6 +49,7 @@ architecture a_banco_reg of banco_reg is
 begin
 
     -- controle do write enable de cada registrador
+    -- decoder seleciona o bit ativo para habilitar a escrita no registrador correto
     dec : decoder_3to8 port map (in_bus  => wr_reg,
                                  out_bus => wr_en_bus);
 
@@ -62,7 +63,7 @@ begin
     wr_en7 <= wr_en and wr_en_bus(7);
 
 
-    -- registradores x0 a x7
+    -- instancia registradores x0 a x7
     x0 : reg_16bits port map (data_in => zero, 
                               data_out => data_out0,
                               wr_en => wr_en0,
@@ -111,7 +112,7 @@ begin
                               clk => clk,
                               rst => rst);
                             
-    -- seleciona os barramentos de dados de saída
+    -- seleciona os registradores de leitura
     mux0 : mux_8x1 port map (data0 => data_out0,
                              data1 => data_out1,
                              data2 => data_out2,
