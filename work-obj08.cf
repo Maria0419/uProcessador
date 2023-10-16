@@ -1,0 +1,25 @@
+v 4
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc.vhd" "ba9cdad735b44278751f7e4d785d5f1a58b039bd" "20231016051759.235":
+  entity pc at 1( 0) + 0 on 35;
+  architecture a_pc of pc at 12( 204) + 0 on 36;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\reg_8bits.vhd" "97ce0c9e66d4b82e8eb4a241a97075f26f5d17c9" "20231016051750.743":
+  entity reg_8bits at 1( 0) + 0 on 31;
+  architecture a_reg_8bits of reg_8bits at 13( 263) + 0 on 32;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados.vhd" "48b93453abba02c0c839c4e90f7e005e2d86727f" "20231016053013.532":
+  entity maq_estados at 1( 0) + 0 on 41;
+  architecture a_maq_estados of maq_estados at 12( 221) + 0 on 42;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "de23c2988ff0e32e388a521b7f966f6ba1eb057a" "20231016035753.864":
+  entity rom at 1( 0) + 0 on 15;
+  architecture a_rom of rom at 14( 242) + 0 on 16;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231016035756.855":
+  entity rom_tb at 1( 0) + 0 on 17;
+  architecture a_rom_tb of rom_tb at 8( 107) + 0 on 18;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados_tb.vhd" "f9f7f679cfc14e9c26d78b33f7abb8a44edba38a" "20231016053251.966":
+  entity maq_estados_tb at 1( 0) + 0 on 43;
+  architecture a_maq_estados_tb of maq_estados_tb at 8( 123) + 0 on 44;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\incrementador.vhd" "b63cd8c2d0ea9b76dda1eead40a9f3ea1f5b6d5b" "20231016051756.103":
+  entity incrementador at 1( 0) + 0 on 33;
+  architecture a_incrementador of incrementador at 12( 229) + 0 on 34;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc_tb.vhd" "7ae010f7295e6c5106e99567ba1eb6e854a46981" "20231016052226.630":
+  entity pc_tb at 1( 0) + 0 on 39;
+  architecture a_pc_tb of pc_tb at 8( 105) + 0 on 40;

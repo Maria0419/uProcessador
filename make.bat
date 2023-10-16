@@ -30,5 +30,8 @@ ghdl -e toplevel
 ghdl -a toplevel_tb.vhd
 ghdl -e toplevel_tb
 
+ghdl  -r  ula_tb  --wave=ula_tb.ghw
+gtkwave ula_tb.ghw
+
 ghdl  -r  toplevel_tb  --wave=toplevel_tb.ghw
 gtkwave toplevel_tb.ghw
