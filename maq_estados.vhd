@@ -3,29 +3,26 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity maq_estados is
-    port (
-        estado           : out std_logic;
-        clk, rst, enable : in std_logic
+    port( 
+        clk,rst: in std_logic;
+          estado: out std_logic
     );
-end maq_estados;
+end entity;
 
 architecture a_maq_estados of maq_estados is
-
-    signal estado_s : std_logic := '0';
-
+    signal estado_s: std_logic:='0';
 begin
-
-    process
+    process(clk,rst)
     begin
-        if (rst = '1') then
+        if rst='1' then
             estado_s <= '0';
-        elsif (enable = '1') then
-            if (rising_edge(clk)) then
-                estado_s <= not estado_s;
+        elsif rising_edge(clk) then
+            if estado_s='1' then -- se esta no segundo estado
+                estado_s <= '0'; -- o proximo vai voltar ao primeiro
+            else
+                estado_s <= not estado_s; -- senao avanca
             end if;
         end if;
     end process;
-
     estado <= estado_s;
-    
 end architecture;

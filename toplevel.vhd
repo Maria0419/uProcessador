@@ -11,7 +11,8 @@ entity toplevel is
         ula_operation : in unsigned(1 downto 0);    -- operacao da ULA
         read_reg0 : in unsigned(2 downto 0);        -- registradores de leitura
         read_reg1 : in unsigned(2 downto 0);
-        write_reg : in unsigned(2 downto 0)         -- registrador de escrita
+        write_reg : in unsigned(2 downto 0);         -- registrador de escrita
+        rom_o : out unsigned(14 downto 0)           -- saida da ROM
     );
 end entity;
 
@@ -43,11 +44,28 @@ architecture a_toplevel of toplevel is
         );
     end component;
 
+    component rom is
+        port 
+        (
+            clk  : in std_logic;
+            addr : in unsigned (7 downto 0);
+            data : out unsigned (14 downto 0)
+        );
+    end component;
+
+    component pc is
+        port (
+            data_o : out unsigned (7 downto 0);
+            clk, wr_en, rst : in std_logic
+        );
+    end component;
+
     -- sinais pra ligar um componente ao outro
     signal rb_to_ula : unsigned(15 downto 0);
     signal rb_to_mux : unsigned(15 downto 0);
     signal mux_to_ula : unsigned(15 downto 0);
     signal ula_to_rb : unsigned(15 downto 0);
+    signal pc_to_rom : unsigned(7 downto 0);
 
 
 begin
@@ -76,6 +94,17 @@ begin
         i0 => rb_to_mux,
         i1 => constant_mux1,
         saida => mux_to_ula 
+    );
+    rom1: rom port map (
+        clk => clk,
+        addr => pc_to_rom,
+        data => rom_o
+    );
+    pc1: pc port map (
+        data_o => pc_to_rom,
+        clk => clk,
+        wr_en => wr_en,
+        rst => rst
     );
     ---------------------------------------------------------
 

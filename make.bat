@@ -24,14 +24,35 @@ ghdl -e banco_reg_tb
 ghdl -a mux2x1.vhd
 ghdl -e mux2x1
 
+ghdl -a reg_8bits.vhd
+ghdl -e reg_8bits
+
+ghdl -a incrementador.vhd
+ghdl -e incrementador
+
+ghdl -a rom.vhd
+ghdl -e rom
+
+ghdl -a rom_tb.vhd
+ghdl -e rom_tb
+
+ghdl -a pc.vhd
+ghdl -e pc
+
+
+
 ghdl -a toplevel.vhd
 ghdl -e toplevel
 
 ghdl -a toplevel_tb.vhd
 ghdl -e toplevel_tb
 
-ghdl  -r  ula_tb  --wave=ula_tb.ghw
-gtkwave ula_tb.ghw
+ghdl -a maq_estados.vhd
+ghdl -e maq_estados
 
-ghdl  -r  toplevel_tb  --wave=toplevel_tb.ghw
-gtkwave toplevel_tb.ghw
+ghdl -a maq_estados_tb.vhd
+ghdl -e maq_estados_tb
+
+
+ghdl  -r  maq_estados_tb  --wave=maq_estados_tb.ghw
+gtkwave maq_estados_tb.ghw
