@@ -33,7 +33,7 @@ architecture a_toplevel of toplevel is
             wr_data : in unsigned (15 downto 0);
             out_data0, out_data1 : out unsigned (15 downto 0);
             wr_en, clk, rst : in std_logic
-            );
+        );
     end component;
 
     component mux2x1 is
@@ -55,8 +55,27 @@ architecture a_toplevel of toplevel is
 
     component pc is
         port (
+            increase : in unsigned (7 downto 0);
             data_o : out unsigned (7 downto 0);
             clk, wr_en, rst : in std_logic
+        );
+    end component;
+
+    component reg_15bits is
+        port (
+            data_in  : in unsigned (14 downto 0);
+            data_out : out unsigned (14 downto 0);
+            wr_en, clk, rst : in std_logic
+        );
+    end component;
+
+    component uc is
+        port (
+            clk, rst : in std_logic;
+            instruction : in unsigned(14 downto 0);
+            jump_en : out std_logic;
+            estado_maq : out std_logic;
+            pc_wr_en : out std_logic
         );
     end component;
 
@@ -66,6 +85,8 @@ architecture a_toplevel of toplevel is
     signal mux_to_ula : unsigned(15 downto 0);
     signal ula_to_rb : unsigned(15 downto 0);
     signal pc_to_rom : unsigned(7 downto 0);
+    signal rom_to_instr_reg : unsigned (14 downto 0);
+    signal instr_reg_to_uc : unsigned (14 downto 0);
 
 
 begin
@@ -105,6 +126,16 @@ begin
         clk => clk,
         wr_en => wr_en,
         rst => rst
+    );
+
+    inst_reg: reg_15bits port map (
+        data_in => rom_to_instr_reg,
+        data_out => instr_reg_to_uc,
+        clk => clk
+    );
+
+    uc1: uc port map (
+        
     );
     ---------------------------------------------------------
 

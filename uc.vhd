@@ -8,7 +8,8 @@ entity uc is
         instruction : in unsigned(14 downto 0);
         jump_en : out std_logic;
         estado_maq : out std_logic;
-        pc_wr_en : out std_logic
+        pc_wr_en : out std_logic;
+        ula_op : out unsigned (1 downto 0);
     );
 end entity;
 
@@ -36,9 +37,9 @@ begin
 
     estado_maq <= estado_s;
     opcode <= instruction(14 downto 11);
-    jump_en <= '1' when opcode = "1111" else 
-               '0' when opcode = "0000" else
+    jump_en <= '1' when opcode = "1111" else
                '0';
     pc_wr_en <= '1' when estado_s = '1' else '0';
+    
 
 end architecture;

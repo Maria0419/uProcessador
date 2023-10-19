@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity pc is
     port (
-        data_i : in unsigned (7 downto 0);
+        increase : in unsigned (7 downto 0);
         data_o : out unsigned (7 downto 0);
         clk, wr_en, rst : in std_logic
     );
@@ -38,7 +38,7 @@ begin
                                  clk    => clk,
                                  rst    => rst);
 
-    incrementador1: incrementador port map (increase => data_i,
+    incrementador1: incrementador port map (increase => increase,
                                             data_i => pc_out,
                                             data_o => incrementador_out);
                     
