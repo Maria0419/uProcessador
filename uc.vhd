@@ -36,7 +36,9 @@ begin
 
     estado_maq <= estado_s;
     opcode <= instruction(14 downto 11);
-    jump_en <= '1' when opcode = "1111" else '0';
+    jump_en <= '1' when opcode = "1111" else 
+               '0' when opcode = "0000" else
+               '0';
     pc_wr_en <= '1' when estado_s = '1' else '0';
 
 end architecture;

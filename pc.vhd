@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 
 entity pc is
     port (
+        data_i : in unsigned (7 downto 0);
         data_o : out unsigned (7 downto 0);
         clk, wr_en, rst : in std_logic
     );
@@ -21,6 +22,7 @@ architecture a_pc of pc is
 
     component incrementador is
         port(
+            increase : in unsigned (7 downto 0);
             data_i : in unsigned (7 downto 0);
             data_o : out unsigned (7 downto 0)
         );
@@ -36,7 +38,8 @@ begin
                                  clk    => clk,
                                  rst    => rst);
 
-    incrementador1: incrementador port map (data_i => pc_out,
+    incrementador1: incrementador port map (increase => data_i,
+                                            data_i => pc_out,
                                             data_o => incrementador_out);
                     
     data_o <= pc_out;

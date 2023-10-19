@@ -1,25 +1,34 @@
 v 4
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc.vhd" "ba9cdad735b44278751f7e4d785d5f1a58b039bd" "20231016051759.235":
-  entity pc at 1( 0) + 0 on 35;
-  architecture a_pc of pc at 12( 204) + 0 on 36;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel2_tb.vhd" "252666c43ff9d6301cb341a58eb3fe2943388ec3" "20231019022222.064":
+  entity toplevel2_tb at 1( 0) + 0 on 63;
+  architecture a_toplevel2_tb of toplevel2_tb at 8( 106) + 0 on 64;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc.vhd" "8ee38fd7d82b5d3b25589aa6845fecd66f34dc87" "20231019021424.645":
+  entity pc at 1( 0) + 0 on 45;
+  architecture a_pc of pc at 13( 248) + 0 on 46;
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\reg_8bits.vhd" "97ce0c9e66d4b82e8eb4a241a97075f26f5d17c9" "20231016051750.743":
   entity reg_8bits at 1( 0) + 0 on 31;
   architecture a_reg_8bits of reg_8bits at 13( 263) + 0 on 32;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados.vhd" "48b93453abba02c0c839c4e90f7e005e2d86727f" "20231016053013.532":
-  entity maq_estados at 1( 0) + 0 on 41;
-  architecture a_maq_estados of maq_estados at 12( 221) + 0 on 42;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "de23c2988ff0e32e388a521b7f966f6ba1eb057a" "20231016035753.864":
-  entity rom at 1( 0) + 0 on 15;
-  architecture a_rom of rom at 14( 242) + 0 on 16;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados.vhd" "1fe96a4965b469d338b9fda7a14ea6c8b9956916" "20231019022159.104":
+  entity maq_estados at 1( 0) + 0 on 59;
+  architecture a_maq_estados of maq_estados at 12( 197) + 0 on 60;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "fcffa1dbe8ee823c1f313f04572d09ab2e66c881" "20231019021429.426":
+  entity rom at 1( 0) + 0 on 47;
+  architecture a_rom of rom at 14( 242) + 0 on 48;
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231016035756.855":
   entity rom_tb at 1( 0) + 0 on 17;
   architecture a_rom_tb of rom_tb at 8( 107) + 0 on 18;
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados_tb.vhd" "f9f7f679cfc14e9c26d78b33f7abb8a44edba38a" "20231016053251.966":
   entity maq_estados_tb at 1( 0) + 0 on 43;
   architecture a_maq_estados_tb of maq_estados_tb at 8( 123) + 0 on 44;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\incrementador.vhd" "b63cd8c2d0ea9b76dda1eead40a9f3ea1f5b6d5b" "20231016051756.103":
-  entity incrementador at 1( 0) + 0 on 33;
-  architecture a_incrementador of incrementador at 12( 229) + 0 on 34;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc_tb.vhd" "7ae010f7295e6c5106e99567ba1eb6e854a46981" "20231016052226.630":
-  entity pc_tb at 1( 0) + 0 on 39;
-  architecture a_pc_tb of pc_tb at 8( 105) + 0 on 40;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\incrementador.vhd" "9350d449e10bb5897f9d2e46a04e12a48a4e2176" "20231019021443.095":
+  entity incrementador at 1( 0) + 0 on 51;
+  architecture a_incrementador of incrementador at 13( 275) + 0 on 52;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc_tb.vhd" "de5331533dc7fe9971026175502bfccb06eda40e" "20231019024221.482":
+  entity pc_tb at 1( 0) + 0 on 67;
+  architecture a_pc_tb of pc_tb at 8( 105) + 0 on 68;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc.vhd" "59f174cb56a776373eced821873d705168407a4a" "20231019021538.624":
+  entity uc at 1( 0) + 0 on 53;
+  architecture a_uc of uc at 15( 311) + 0 on 54;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel2.vhd" "0b29adf06534e830422bd7201c78026e4da1d01a" "20231019022203.337":
+  entity toplevel2 at 1( 0) + 0 on 61;
+  architecture a_toplevel2 of toplevel2 at 13( 223) + 0 on 62;
