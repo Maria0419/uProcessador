@@ -17,8 +17,8 @@ begin
         if rst='1' then
             estado_s <= '0';
         elsif rising_edge(clk) then
-            if estado_s='1' then -- se esta no segundo estado
-                estado_s <= '0'; -- o proximo vai voltar ao primeiro
+            if estado_s='1' then -- se esta no estado 1
+                estado_s <= '0'; -- o proximo vai voltar ao 0
             else
                 estado_s <= not estado_s; -- senao avanca
             end if;

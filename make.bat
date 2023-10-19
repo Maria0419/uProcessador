@@ -39,8 +39,6 @@ ghdl -e rom_tb
 ghdl -a pc.vhd
 ghdl -e pc
 
-
-
 ghdl -a toplevel.vhd
 ghdl -e toplevel
 
@@ -53,6 +51,12 @@ ghdl -e maq_estados
 ghdl -a maq_estados_tb.vhd
 ghdl -e maq_estados_tb
 
+ghdl -a uc.vhd
+ghdl -e uc
 
-ghdl  -r  maq_estados_tb  --wave=maq_estados_tb.ghw
-gtkwave maq_estados_tb.ghw
+
+ghdl -a uc_tb.vhd
+ghdl -e uc_tb
+
+ghdl  -r uc_tb  --wave=uc_tb.ghw
+gtkwave uc_tb.ghw
