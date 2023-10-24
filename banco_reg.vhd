@@ -7,8 +7,7 @@ entity banco_reg is
         rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);    -- numero dos regs (leitura e escrita)
         wr_data : in unsigned (15 downto 0);                    -- dados a serem escritos
         out_data0, out_data1 : out unsigned (15 downto 0);      -- dados armazenados nos regs de leitura
-        wr_en, clk, rst : in std_logic;                         -- write enable, clock e reset dos regs
-        r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0)
+        wr_en, clk, rst : in std_logic                         -- write enable, clock e reset dos regs
     );
 end banco_reg;
 
