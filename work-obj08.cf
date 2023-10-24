@@ -1,34 +1,58 @@
 v 4
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel2_tb.vhd" "252666c43ff9d6301cb341a58eb3fe2943388ec3" "20231019022222.064":
-  entity toplevel2_tb at 1( 0) + 0 on 63;
-  architecture a_toplevel2_tb of toplevel2_tb at 8( 106) + 0 on 64;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc.vhd" "8ee38fd7d82b5d3b25589aa6845fecd66f34dc87" "20231019021424.645":
-  entity pc at 1( 0) + 0 on 45;
-  architecture a_pc of pc at 13( 248) + 0 on 46;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\reg_8bits.vhd" "97ce0c9e66d4b82e8eb4a241a97075f26f5d17c9" "20231016051750.743":
-  entity reg_8bits at 1( 0) + 0 on 31;
-  architecture a_reg_8bits of reg_8bits at 13( 263) + 0 on 32;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados.vhd" "1fe96a4965b469d338b9fda7a14ea6c8b9956916" "20231019022159.104":
-  entity maq_estados at 1( 0) + 0 on 59;
-  architecture a_maq_estados of maq_estados at 12( 197) + 0 on 60;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "fcffa1dbe8ee823c1f313f04572d09ab2e66c881" "20231019021429.426":
-  entity rom at 1( 0) + 0 on 47;
-  architecture a_rom of rom at 14( 242) + 0 on 48;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231016035756.855":
-  entity rom_tb at 1( 0) + 0 on 17;
-  architecture a_rom_tb of rom_tb at 8( 107) + 0 on 18;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados_tb.vhd" "f9f7f679cfc14e9c26d78b33f7abb8a44edba38a" "20231016053251.966":
-  entity maq_estados_tb at 1( 0) + 0 on 43;
-  architecture a_maq_estados_tb of maq_estados_tb at 8( 123) + 0 on 44;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\incrementador.vhd" "9350d449e10bb5897f9d2e46a04e12a48a4e2176" "20231019021443.095":
-  entity incrementador at 1( 0) + 0 on 51;
-  architecture a_incrementador of incrementador at 13( 275) + 0 on 52;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc_tb.vhd" "de5331533dc7fe9971026175502bfccb06eda40e" "20231019024221.482":
-  entity pc_tb at 1( 0) + 0 on 67;
-  architecture a_pc_tb of pc_tb at 8( 105) + 0 on 68;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc.vhd" "59f174cb56a776373eced821873d705168407a4a" "20231019021538.624":
-  entity uc at 1( 0) + 0 on 53;
-  architecture a_uc of uc at 15( 311) + 0 on 54;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\banco_reg_tb.vhd" "f56d3a8cdfe4847cb3427de4d6976775fa9a31a2" "20231024025219.198":
+  entity banco_reg_tb at 1( 0) + 0 on 123;
+  architecture a_banco_reg_tb of banco_reg_tb at 8( 106) + 0 on 124;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel_tb.vhd" "2a6d7eee6bec5081f019647117df17812855a640" "20231024025301.230":
+  entity toplevel_tb at 1( 0) + 0 on 125;
+  architecture a_toplevel_tb of toplevel_tb at 8( 105) + 0 on 126;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\mux2x1_3bits.vhd" "7e8bf8733478c1b11b9ac22247792db47109cce1" "20231024013859.158":
+  entity mux2x1_3bits at 1( 0) + 0 on 89;
+  architecture a_mux2x1_3bits of mux2x1_3bits at 13( 248) + 0 on 90;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc_tb.vhd" "cd399862d96bd2bfba9280f01250cdeab3e9a007" "20231023161259.013":
+  entity uc_tb at 1( 0) + 0 on 81;
+  architecture a_uc_tb of uc_tb at 8( 99) + 0 on 82;
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel2.vhd" "0b29adf06534e830422bd7201c78026e4da1d01a" "20231019022203.337":
   entity toplevel2 at 1( 0) + 0 on 61;
   architecture a_toplevel2 of toplevel2 at 13( 223) + 0 on 62;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc.vhd" "b550c5ea19b04e93c8828d858e9b38489f1085bd" "20231024013909.642":
+  entity uc at 1( 0) + 0 on 93;
+  architecture a_uc of uc at 22( 949) + 0 on 94;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc_tb.vhd" "de5331533dc7fe9971026175502bfccb06eda40e" "20231019024221.482":
+  entity pc_tb at 1( 0) + 0 on 67;
+  architecture a_pc_tb of pc_tb at 8( 105) + 0 on 68;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\incrementador.vhd" "9350d449e10bb5897f9d2e46a04e12a48a4e2176" "20231019021443.095":
+  entity incrementador at 1( 0) + 0 on 51;
+  architecture a_incrementador of incrementador at 13( 275) + 0 on 52;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados_tb.vhd" "f9f7f679cfc14e9c26d78b33f7abb8a44edba38a" "20231016053251.966":
+  entity maq_estados_tb at 1( 0) + 0 on 43;
+  architecture a_maq_estados_tb of maq_estados_tb at 8( 123) + 0 on 44;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231016035756.855":
+  entity rom_tb at 1( 0) + 0 on 17;
+  architecture a_rom_tb of rom_tb at 8( 107) + 0 on 18;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "fcffa1dbe8ee823c1f313f04572d09ab2e66c881" "20231019021429.426":
+  entity rom at 1( 0) + 0 on 47;
+  architecture a_rom of rom at 14( 242) + 0 on 48;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados.vhd" "c9fd9073109f0a45a57ab137568f562ddd89e04f" "20231024013853.107":
+  entity maq_estados at 1( 0) + 0 on 85;
+  architecture a_maq_estados of maq_estados at 13( 281) + 0 on 86;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\reg_8bits.vhd" "97ce0c9e66d4b82e8eb4a241a97075f26f5d17c9" "20231016051750.743":
+  entity reg_8bits at 1( 0) + 0 on 31;
+  architecture a_reg_8bits of reg_8bits at 13( 263) + 0 on 32;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc.vhd" "651c6100772b6d43ade000a52409c704781d5f04" "20231024015620.714":
+  entity pc at 1( 0) + 0 on 103;
+  architecture a_pc of pc at 13( 250) + 0 on 104;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel2_tb.vhd" "252666c43ff9d6301cb341a58eb3fe2943388ec3" "20231019022222.064":
+  entity toplevel2_tb at 1( 0) + 0 on 63;
+  architecture a_toplevel2_tb of toplevel2_tb at 8( 106) + 0 on 64;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\banco_reg.vhd" "c5f6b328ab6e2e2788f0de73b8353a8c360009cf" "20231024025216.032":
+  entity banco_reg at 1( 0) + 0 on 121;
+  architecture a_banco_reg of banco_reg at 15( 608) + 0 on 122;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\mux_8x1_16bits.vhd" "80cabd5ed6ae512f0ced662836e2e5144d0a064b" "20231024013856.228":
+  entity mux_8x1_16bits at 1( 0) + 0 on 87;
+  architecture a_mux_8x1_16bits of mux_8x1_16bits at 13( 324) + 0 on 88;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\mux2x1_16bits.vhd" "2cc3bc2e319d9c56cc0388c345da82fd6c3943d1" "20231024013902.731":
+  entity mux2x1_16bits at 1( 0) + 0 on 91;
+  architecture a_mux2x1_16bits of mux2x1_16bits at 13( 251) + 0 on 92;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel.vhd" "f6ab438e2c2e696ec778bb60d190eca42379fc02" "20231024013913.639":
+  entity toplevel at 1( 0) + 0 on 95;
+  architecture a_toplevel of toplevel at 13( 255) + 0 on 96;

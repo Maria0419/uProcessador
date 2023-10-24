@@ -7,7 +7,8 @@ entity banco_reg is
         rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);    -- numero dos regs (leitura e escrita)
         wr_data : in unsigned (15 downto 0);                    -- dados a serem escritos
         out_data0, out_data1 : out unsigned (15 downto 0);      -- dados armazenados nos regs de leitura
-        wr_en, clk, rst : in std_logic                          -- write enable, clock e reset dos regs
+        wr_en, clk, rst : in std_logic;                         -- write enable, clock e reset dos regs
+        r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0)
     );
 end banco_reg;
 
@@ -28,7 +29,7 @@ architecture a_banco_reg of banco_reg is
         );
     end component;
 
-    component mux_8x1 is
+    component mux_8x1_16bits is
         port (
             data0, data1, data2, data3, data4, data5, data6, data7 : in unsigned (15 downto 0);
             sel : in unsigned (2 downto 0);
@@ -113,7 +114,7 @@ begin
                               rst => rst);
                             
     -- seleciona os registradores de leitura
-    mux0 : mux_8x1 port map (data0 => data_out0,
+    mux0 : mux_8x1_16bits port map (data0 => data_out0,
                              data1 => data_out1,
                              data2 => data_out2,
                              data3 => data_out3,
@@ -124,7 +125,7 @@ begin
                              sel => rd_reg0,
                              data_out => out_data0);
 
-    mux1 : mux_8x1 port map (data0 => data_out0,
+    mux1 : mux_8x1_16bits port map (data0 => data_out0,
                              data1 => data_out1,
                              data2 => data_out2,
                              data3 => data_out3,

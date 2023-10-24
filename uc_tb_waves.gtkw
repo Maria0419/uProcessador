@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Oct 23 16:24:06 2023
+[*]
+[dumpfile] "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc_tb.ghw"
+[dumpfile_mtime] "Mon Oct 23 16:13:08 2023"
+[dumpfile_size] 3331
+[savefile] "C:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc_tb_waves.gtkw"
+[timestart] 0
+[size] 1366 705
+[pos] -61 -61
+*-28.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.uc_tb.
+[treeopen] top.uc_tb.uut.
+[sst_width] 197
+[signals_width] 134
+[sst_expanded] 1
+[sst_vpaned_height] 190
+@28
+top.uc_tb.clk
+top.uc_tb.rst
+@22
+#{top.uc_tb.opcode[3:0]} top.uc_tb.opcode[3] top.uc_tb.opcode[2] top.uc_tb.opcode[1] top.uc_tb.opcode[0]
+@29
+top.uc_tb.pc_wr
+@28
+top.uc_tb.ir_wr
+top.uc_tb.reg_wr_en
+top.uc_tb.jump_en
+top.uc_tb.wr_sel
+top.uc_tb.ula_sel
+top.uc_tb.wr_sel
+top.uc_tb.rd1_sel
+top.uc_tb.rd0_sel
+#{top.uc_tb.ula_op[1:0]} top.uc_tb.ula_op[1] top.uc_tb.ula_op[0]
+#{top.uc_tb.uut.estado_s[1:0]} top.uc_tb.uut.estado_s[1] top.uc_tb.uut.estado_s[0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -2,15 +2,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity mux_8x1 is
+entity mux_8x1_16bits is
     port (
         data0, data1, data2, data3, data4, data5, data6, data7 : in unsigned (15 downto 0);
         sel : in unsigned (2 downto 0);
         data_out : out unsigned (15 downto 0)
     );
-end mux_8x1;
+end mux_8x1_16bits;
 
-architecture a_mux_8x1 of mux_8x1 is
+architecture a_mux_8x1_16bits of mux_8x1_16bits is
 
 begin
 
