@@ -5,8 +5,7 @@ use ieee.numeric_std.all;
 entity toplevel is
     port(
         clk : in std_logic;
-        rst : in std_logic;
-        r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0)
+        rst : in std_logic
     );
 end entity;
 
@@ -25,8 +24,7 @@ architecture a_toplevel of toplevel is
             rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);
             wr_data                  : in unsigned (15 downto 0);
             out_data0, out_data1     : out unsigned (15 downto 0);
-            wr_en, clk, rst          : in std_logic;
-            r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0)
+            wr_en, clk, rst          : in std_logic
         );
     end component;
 
@@ -156,7 +154,7 @@ begin
         sel   => mux_wr_sel,
         i0    => dest_reg,
         i1    => acc,
-        saida => mux_to_rb_rd0
+        saida => mux_to_rb_wr
     );
     bancoreg1: banco_reg port map (
         rd_reg0   => mux_to_rb_rd0,
@@ -167,15 +165,7 @@ begin
         clk       => clk,
         wr_data   => ula_to_rb,
         out_data0 => rb_to_ula,
-        out_data1 => rb_to_mux,
-        r0 => r0,
-        r1 => r1,
-        r2 => r2,
-        r3 => r3,
-        r4 => r4,
-        r5 => r5,
-        r6 => r6,
-        r7 => r7
+        out_data1 => rb_to_mux
     );
     ula1: ula port map (
         x     => rb_to_ula,

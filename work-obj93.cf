@@ -1,58 +1,70 @@
 v 4
-file . "uc.vhd" "d0b84eec8e601e9cdc17fedbbffd9d1efd7abf56" "20231019004334.917":
-  entity uc at 1( 0) + 0 on 1057;
-  architecture a_uc of uc at 15( 311) + 0 on 1058;
-file . "maq_estados.vhd" "1fe96a4965b469d338b9fda7a14ea6c8b9956916" "20231019004334.470":
-  entity maq_estados at 1( 0) + 0 on 1053;
-  architecture a_maq_estados of maq_estados at 12( 197) + 0 on 1054;
-file . "rom.vhd" "de23c2988ff0e32e388a521b7f966f6ba1eb057a" "20231019004333.125":
-  entity rom at 1( 0) + 0 on 1043;
-  architecture a_rom of rom at 14( 242) + 0 on 1044;
-file . "mux2x1.vhd" "f48f7577d864b37ce52d5063b4b85bf3f9f168c5" "20231019004332.465":
-  entity mux2x1 at 1( 0) + 0 on 1037;
-  architecture a_mux2x1 of mux2x1 at 13( 244) + 0 on 1038;
-file . "banco_reg_tb.vhd" "4e5322c36e102e8c4cdcd2866118fb57d413aa79" "20231019004332.142":
-  entity banco_reg_tb at 1( 0) + 0 on 1035;
-  architecture a_banco_reg_tb of banco_reg_tb at 8( 106) + 0 on 1036;
-file . "decoder_3to8.vhd" "49066b7a0ee7b42c9ab8da24854ce35414c6f890" "20231019004331.419":
-  entity decoder_3to8 at 1( 0) + 0 on 1029;
-  architecture a_decoder_3to8 of decoder_3to8 at 13( 289) + 0 on 1030;
-file . "ula_tb.vhd" "8f8260545db703acf6c0a386cbd4b879ea0b6260" "20231019004330.954":
-  entity ula_tb at 1( 0) + 0 on 1025;
-  architecture a_ula_tb of ula_tb at 8( 100) + 0 on 1026;
-file . "ula.vhd" "da2c36fba22bf3c7b9276895f357e14320100285" "20231019004330.732":
-  entity ula at 1( 0) + 0 on 1023;
-  architecture a_ula of ula at 13( 245) + 0 on 1024;
+file . "reg_15bits.vhd" "c85c036b23332e63afbc7f6d15e6082b196b59aa" "20231025022246.661":
+  entity reg_15bits at 1( 0) + 0 on 1355;
+  architecture a_reg_15bits of reg_15bits at 13( 270) + 0 on 1356;
+file . "mux2x1_3bits.vhd" "7e8bf8733478c1b11b9ac22247792db47109cce1" "20231025022246.418":
+  entity mux2x1_3bits at 1( 0) + 0 on 1353;
+  architecture a_mux2x1_3bits of mux2x1_3bits at 13( 248) + 0 on 1354;
+file . "mux_8x1_16bits.vhd" "80cabd5ed6ae512f0ced662836e2e5144d0a064b" "20231025022243.517":
+  entity mux_8x1_16bits at 1( 0) + 0 on 1331;
+  architecture a_mux_8x1_16bits of mux_8x1_16bits at 13( 324) + 0 on 1332;
+file . "uc_tb.vhd" "cd399862d96bd2bfba9280f01250cdeab3e9a007" "20231025022248.166":
+  entity uc_tb at 1( 0) + 0 on 1365;
+  architecture a_uc_tb of uc_tb at 8( 99) + 0 on 1366;
+file . "reg_8bits.vhd" "97ce0c9e66d4b82e8eb4a241a97075f26f5d17c9" "20231025022245.176":
+  entity reg_8bits at 1( 0) + 0 on 1343;
+  architecture a_reg_8bits of reg_8bits at 13( 263) + 0 on 1344;
+file . "incrementador.vhd" "9350d449e10bb5897f9d2e46a04e12a48a4e2176" "20231025022245.404":
+  entity incrementador at 1( 0) + 0 on 1345;
+  architecture a_incrementador of incrementador at 13( 275) + 0 on 1346;
+file . "pc.vhd" "651c6100772b6d43ade000a52409c704781d5f04" "20231025022246.152":
+  entity pc at 1( 0) + 0 on 1351;
+  architecture a_pc of pc at 13( 250) + 0 on 1352;
+file . "maq_estados_tb.vhd" "f74d6da0be3a3a8200b8ff1cd338d0e3c60f3e49" "20231024033808.687":
+  entity maq_estados_tb at 1( 0) + 0 on 1131;
+  architecture a_maq_estados_tb of maq_estados_tb at 8( 108) + 0 on 1132;
+file . "rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231025022245.861":
+  entity rom_tb at 1( 0) + 0 on 1349;
+  architecture a_rom_tb of rom_tb at 8( 107) + 0 on 1350;
+file . "toplevel_tb.vhd" "df9a4872b57c2aea8bbbe53afe354297e4d92c17" "20231025022247.287":
+  entity toplevel_tb at 1( 0) + 0 on 1359;
+  architecture a_toplevel_tb of toplevel_tb at 8( 105) + 0 on 1360;
+file . "toplevel.vhd" "25207dca83b1302745f49ccc9e55e799556397c3" "20231025022246.893":
+  entity toplevel at 1( 0) + 0 on 1357;
+  architecture a_toplevel of toplevel at 12( 185) + 0 on 1358;
+file . "banco_reg.vhd" "fecf9dc1fde26be2b6a81ae261ac6be83ac26a68" "20231025022244.266":
+  entity banco_reg at 1( 0) + 0 on 1337;
+  architecture a_banco_reg of banco_reg at 14( 328) + 0 on 1338;
+file . "reg_16bits.vhd" "449a57ca349eaaa199a62fa31b98027f3589b47c" "20231025022244.013":
+  entity reg_16bits at 1( 0) + 0 on 1335;
+  architecture a_reg_16bits of reg_16bits at 13( 270) + 0 on 1336;
 file . "mux_8x1.vhd" "f75502b9ef539dae410eceab8dbae7b6e6282862" "20231019004331.178":
   entity mux_8x1 at 1( 0) + 0 on 1027;
   architecture a_mux_8x1 of mux_8x1 at 13( 310) + 0 on 1028;
-file . "reg_16bits.vhd" "449a57ca349eaaa199a62fa31b98027f3589b47c" "20231019004331.636":
-  entity reg_16bits at 1( 0) + 0 on 1031;
-  architecture a_reg_16bits of reg_16bits at 13( 270) + 0 on 1032;
-file . "banco_reg.vhd" "2bd607987fc4572d255e02021d732813821b9196" "20231019004331.845":
-  entity banco_reg at 1( 0) + 0 on 1033;
-  architecture a_banco_reg of banco_reg at 14( 539) + 0 on 1034;
-file . "toplevel.vhd" "bc4bfc383c2fd6c6bab85f1286d8146ab43542e5" "20231019004333.821":
-  entity toplevel at 1( 0) + 0 on 1049;
-  architecture a_toplevel of toplevel at 19( 829) + 0 on 1050;
-file . "toplevel_tb.vhd" "77f126225bbbae90c5ecdc6dd579042ee3628a00" "20231019004334.141":
-  entity toplevel_tb at 1( 0) + 0 on 1051;
-  architecture a_toplevel_tb of toplevel_tb at 8( 105) + 0 on 1052;
-file . "rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231019004333.371":
-  entity rom_tb at 1( 0) + 0 on 1045;
-  architecture a_rom_tb of rom_tb at 8( 107) + 0 on 1046;
-file . "maq_estados_tb.vhd" "f74d6da0be3a3a8200b8ff1cd338d0e3c60f3e49" "20231019004334.700":
-  entity maq_estados_tb at 1( 0) + 0 on 1055;
-  architecture a_maq_estados_tb of maq_estados_tb at 8( 108) + 0 on 1056;
-file . "pc.vhd" "ba9cdad735b44278751f7e4d785d5f1a58b039bd" "20231019004333.597":
-  entity pc at 1( 0) + 0 on 1047;
-  architecture a_pc of pc at 12( 204) + 0 on 1048;
-file . "incrementador.vhd" "b63cd8c2d0ea9b76dda1eead40a9f3ea1f5b6d5b" "20231019004332.918":
-  entity incrementador at 1( 0) + 0 on 1041;
-  architecture a_incrementador of incrementador at 12( 229) + 0 on 1042;
-file . "reg_8bits.vhd" "97ce0c9e66d4b82e8eb4a241a97075f26f5d17c9" "20231019004332.696":
-  entity reg_8bits at 1( 0) + 0 on 1039;
-  architecture a_reg_8bits of reg_8bits at 13( 263) + 0 on 1040;
-file . "uc_tb.vhd" "117424138832114565cd0ca016fddc4a98852fc9" "20231019004335.139":
-  entity uc_tb at 1( 0) + 0 on 1059;
-  architecture a_uc_tb of uc_tb at 8( 99) + 0 on 1060;
+file . "ula.vhd" "da2c36fba22bf3c7b9276895f357e14320100285" "20231025022243.066":
+  entity ula at 1( 0) + 0 on 1327;
+  architecture a_ula of ula at 13( 245) + 0 on 1328;
+file . "ula_tb.vhd" "8f8260545db703acf6c0a386cbd4b879ea0b6260" "20231025022243.291":
+  entity ula_tb at 1( 0) + 0 on 1329;
+  architecture a_ula_tb of ula_tb at 8( 100) + 0 on 1330;
+file . "decoder_3to8.vhd" "49066b7a0ee7b42c9ab8da24854ce35414c6f890" "20231025022243.765":
+  entity decoder_3to8 at 1( 0) + 0 on 1333;
+  architecture a_decoder_3to8 of decoder_3to8 at 13( 289) + 0 on 1334;
+file . "banco_reg_tb.vhd" "fb619c41b32fd7578b19a194b50b82d34b6d4990" "20231025022244.628":
+  entity banco_reg_tb at 1( 0) + 0 on 1339;
+  architecture a_banco_reg_tb of banco_reg_tb at 8( 99) + 0 on 1340;
+file . "mux2x1.vhd" "f48f7577d864b37ce52d5063b4b85bf3f9f168c5" "20231019004332.465":
+  entity mux2x1 at 1( 0) + 0 on 1037;
+  architecture a_mux2x1 of mux2x1 at 13( 244) + 0 on 1038;
+file . "rom.vhd" "f8ea25bfe7ec79c5c0fae9b5d96bbce2275ecef3" "20231025022245.647":
+  entity rom at 1( 0) + 0 on 1347;
+  architecture a_rom of rom at 14( 242) + 0 on 1348;
+file . "maq_estados.vhd" "c9fd9073109f0a45a57ab137568f562ddd89e04f" "20231025022247.635":
+  entity maq_estados at 1( 0) + 0 on 1361;
+  architecture a_maq_estados of maq_estados at 13( 281) + 0 on 1362;
+file . "uc.vhd" "b550c5ea19b04e93c8828d858e9b38489f1085bd" "20231025022247.883":
+  entity uc at 1( 0) + 0 on 1363;
+  architecture a_uc of uc at 22( 949) + 0 on 1364;
+file . "mux2x1_16bits.vhd" "2cc3bc2e319d9c56cc0388c345da82fd6c3943d1" "20231025022244.935":
+  entity mux2x1_16bits at 1( 0) + 0 on 1341;
+  architecture a_mux2x1_16bits of mux2x1_16bits at 13( 251) + 0 on 1342;
