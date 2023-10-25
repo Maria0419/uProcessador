@@ -5,7 +5,12 @@ use ieee.numeric_std.all;
 entity toplevel is
     port(
         clk : in std_logic;
-        rst : in std_logic
+        rst : in std_logic;
+        estado : out unsigned (1 downto 0);
+        instr : out unsigned (14 downto 0);
+        reg1 : out unsigned (15 downto 0);
+        reg2 : out unsigned (15 downto 0);
+        ula_out : out unsigned (15 downto 0)
     );
 end entity;
 
@@ -81,7 +86,8 @@ architecture a_toplevel of toplevel is
             ir_wr       : out std_logic;     
             jump_en     : out std_logic;                
             reg_wr_en   : out std_logic;           
-            ula_sel     : out std_logic
+            ula_sel     : out std_logic;
+            estado      : out unsigned (1 downto 0)
         );
     end component;
 
@@ -114,6 +120,8 @@ architecture a_toplevel of toplevel is
     signal constant_ula  : unsigned (15 downto 0);
     signal relative_addr : unsigned (7 downto 0);
 
+    signal estado_s : unsigned (1 downto 0);
+
     constant acc  : unsigned (2 downto 0) := "111";
     constant zero : unsigned (2 downto 0) := "000";
 
@@ -136,7 +144,7 @@ begin
         data_out => instr_reg_out,
         clk      => clk,
         rst      => rst,
-        wr_en    => ir_wr
+        wr_en    => '1'
     );
     mux_rd0: mux2x1_3bits port map (
         sel   => mux_rd0_sel,
@@ -191,7 +199,8 @@ begin
         ir_wr     => ir_wr,
         jump_en   => jump_sel,
         reg_wr_en => rb_wr_en,
-        ula_sel   => mux_ula_sel
+        ula_sel   => mux_ula_sel,
+        estado    => estado_s
     );
 
     relative_addr <= "00000001" when jump_sel = '0' else
@@ -202,5 +211,11 @@ begin
     src_reg  <= instr_reg_out (5 downto 3);
     dest_reg <= instr_reg_out (2 downto 0);
     opcode   <= instr_reg_out (14 downto 11);
+
+    estado <= estado_s;
+    instr <= instr_reg_out;
+    reg1 <= rb_to_ula;
+    reg2 <= rb_to_mux;
+    ula_out <= ula_to_rb;
 
 end architecture;

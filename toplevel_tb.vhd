@@ -9,7 +9,12 @@ architecture a_toplevel_tb of toplevel_tb is
     component toplevel is
         port(
         clk : in std_logic;
-        rst : in std_logic
+        rst : in std_logic;
+        estado : out unsigned (1 downto 0);
+        instr : out unsigned (14 downto 0);
+        reg1 : out unsigned (15 downto 0);
+        reg2 : out unsigned (15 downto 0);
+        ula_out : out unsigned (15 downto 0)
         );
     end component;
 
@@ -17,6 +22,9 @@ architecture a_toplevel_tb of toplevel_tb is
     constant period_time            : time       := 100 ns;     -- periodo do clock
     signal finished                 : std_logic  := '0';        -- flag finalizacao da simulacao
     signal rst_s, clk_s    : std_logic;                
+    signal estado_s        : unsigned (1 downto 0);
+    signal instr_s         : unsigned (14 downto 0);
+    signal reg1_s, reg2_s, ula_out_s   : unsigned (15 downto 0);
 
 
 
@@ -24,7 +32,12 @@ architecture a_toplevel_tb of toplevel_tb is
 begin
     uut: toplevel port map (
         clk => clk_s,
-        rst => rst_s
+        rst => rst_s,
+        estado => estado_s,
+        instr => instr_s,
+        reg1 => reg1_s,
+        reg2 => reg2_s,
+        ula_out => ula_out_s
     );
 
 
@@ -34,7 +47,7 @@ begin
     reset_global: process
     begin
         rst_s <= '1';
-        wait for period_time;
+        wait for period_time*2;
         rst_s <= '0';
         wait;
     end process;
@@ -50,8 +63,6 @@ begin
     -- geracao do clock
     clk_proc: process
     begin
-        clk_s <= '0';
-        wait for period_time;
         while finished /= '1' loop
             clk_s <= '0';
             wait for period_time/2;

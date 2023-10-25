@@ -11,7 +11,7 @@ entity maq_estados is
 end entity;
 
 architecture a_maq_estados of maq_estados is
-    signal estado_s: unsigned (1 downto 0);
+    signal estado_s: unsigned (1 downto 0):="00";
 begin
     process(clk,rst)
     begin

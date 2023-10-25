@@ -45,6 +45,11 @@ ghdl -e mux2x1_3bits
 ghdl -a reg_15bits.vhd
 ghdl -e reg_15bits
 
+ghdl -a maq_estados.vhd
+ghdl -e maq_estados
+
+ghdl -a uc.vhd
+ghdl -e uc
 
 ghdl -a toplevel.vhd
 ghdl -e toplevel
@@ -52,16 +57,6 @@ ghdl -e toplevel
 ghdl -a toplevel_tb.vhd
 ghdl -e toplevel_tb
 
-ghdl -a maq_estados.vhd
-ghdl -e maq_estados
-
-ghdl -a uc.vhd
-ghdl -e uc
-
-
-
-ghdl -a uc_tb.vhd
-ghdl -e uc_tb
 
 ghdl  -r  toplevel_tb  --wave=toplevel_tb.ghw
 gtkwave toplevel_tb.ghw

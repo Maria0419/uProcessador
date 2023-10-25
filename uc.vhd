@@ -7,6 +7,8 @@ entity uc is
         clk, rst    : in std_logic;
         opcode      : in unsigned (3 downto 0);
 
+        estado      : out unsigned (1 downto 0);    --estado atual da maquina de estados
+
         ula_op      : out unsigned (1 downto 0);    --operacao da ula
         rd0_sel     : out std_logic;                --'0' -> zero, '1' -> acumulador
         rd1_sel     : out std_logic;                --'0' -> zero, '1' -> registrador src
@@ -47,12 +49,12 @@ begin
     --FETCH -> atualiza o PC
     pc_wr <= '1' when estado_s = "00" else '0';
     --DECODE -> escreve instrucao no IR
-    ir_wr <= '1' when estado_s = "01" else '0';
+    ir_wr <= '1' when estado_s = "00" else '0';
     --EXECUTE -> se a operacao envolve escrita, escreve resultado no RB
-    reg_wr_en <= '1' when estado_s = "10" and (opcode = "0001" or opcode = "0101" or opcode = "0110") else '0';
+    reg_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010"  or opcode = "0101" or opcode = "0110") else '0';
 
     -- determina os sinais de controle no estado DECODE
-    jump_en_s <= '1' when opcode = "1111" else '0';
+    jump_en <= '1' when opcode = "1111" else '0';
 
     ula_op_s <= "00" when opcode = "0001" or opcode = "0101" or opcode = "0110" else
                 "01" when opcode = "0010" else
@@ -69,22 +71,23 @@ begin
     -- opcode "0110" -> MOV Rn, A     -> rd0 = A, rd1 = zero, wr = Rn
 
     rd0_sel_s <= '0' when opcode = "0101" else
-                 '1' when opcode = "0001" or opcode = "0110" else
+                 '1' when opcode = "0001" or opcode = "0110"  or opcode = "0010" else
                  '0';
     rd1_sel_s <= '0' when opcode = "0110" else
-                 '1' when opcode = "0001" else
+                 '1' when opcode = "0001" or opcode = "0010"  else
                  '0';
     wr_sel_s <= '0' when opcode = "0101" or opcode = "0110" else
-                '1' when opcode = "0001" else
+                '1' when opcode = "0001" or opcode = "0010" else
                 '0';
     
 
     -- envia os sinais de controle no estado EXECUTE
-    ula_op <= ula_op_s when estado_s = "10" else "00";
-    jump_en <= jump_en_s when estado_s = "10" else '0';
-    ula_sel <= ula_sel_s when estado_s = "10" else '0';
-    rd0_sel <= rd0_sel_s when estado_s = "10" else '0';
-    rd1_sel <= rd1_sel_s when estado_s = "10" else '0';
-    wr_sel <= wr_sel_s when estado_s = "10" else '0';
+    ula_op <= ula_op_s when estado_s = "01" else "00";
+    ula_sel <= ula_sel_s when estado_s = "01" else '0';
+    rd0_sel <= rd0_sel_s when estado_s = "01" else '0';
+    rd1_sel <= rd1_sel_s when estado_s = "01" else '0';
+    wr_sel <= wr_sel_s when estado_s = "01" else '0';
+
+    estado <= estado_s;
 
 end architecture;
