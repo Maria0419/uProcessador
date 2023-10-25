@@ -2,11 +2,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity toplevel_tb is
+entity processador_tb is
 end;
 
-architecture a_toplevel_tb of toplevel_tb is
-    component toplevel is
+architecture a_processador_tb of processador_tb is
+    component processador is
         port(
         clk : in std_logic;
         rst : in std_logic;
@@ -30,7 +30,7 @@ architecture a_toplevel_tb of toplevel_tb is
 
 
 begin
-    uut: toplevel port map (
+    uut: processador port map (
         clk => clk_s,
         rst => rst_s,
         estado => estado_s,

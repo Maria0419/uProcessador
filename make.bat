@@ -51,12 +51,12 @@ ghdl -e maq_estados
 ghdl -a uc.vhd
 ghdl -e uc
 
-ghdl -a toplevel.vhd
-ghdl -e toplevel
+ghdl -a processador.vhd
+ghdl -e processador
 
-ghdl -a toplevel_tb.vhd
-ghdl -e toplevel_tb
+ghdl -a processador_tb.vhd
+ghdl -e processador_tb
 
 
-ghdl  -r  toplevel_tb  --wave=toplevel_tb.ghw
-gtkwave toplevel_tb.ghw
+ghdl  -r  processador_tb  --wave=processador_tb.ghw
+gtkwave processador_tb.ghw
