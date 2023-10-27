@@ -14,7 +14,6 @@ entity uc is
         rd1_sel     : out std_logic;                --'0' -> zero, '1' -> registrador src
         wr_sel      : out std_logic;                --'0' -> registrador dest, '1' -> acumulador 
         pc_wr       : out std_logic;                --atualizar o PC
-        ir_wr       : out std_logic;                --escrever instrucao no IR
         jump_en     : out std_logic;                --habilitar salto
         reg_wr_en   : out std_logic;                --escrever no RB
         ula_sel     : out std_logic                 --selecao registrador ('0') ou constante ('1')
@@ -49,12 +48,19 @@ begin
     --FETCH -> atualiza o PC
     pc_wr <= '1' when estado_s = "00" else '0';
     --DECODE -> escreve instrucao no IR
-    ir_wr <= '1' when estado_s = "00" else '0';
+
     --EXECUTE -> se a operacao envolve escrita, escreve resultado no RB
     reg_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010"  or opcode = "0101" or opcode = "0110") else '0';
 
+
+    -- opcode "0001" -> ADD A, Rn     -> rd0 = A, rd1 = Rn, wr = A
+    -- opcode "0010" -> SUBB A, Rn    -> rd0 = A, rd1 = Rn, wr = A
+    -- opcode "0101" -> MOV Rn, #data -> rd0 = zero, rd1 = zero (#data), wr = Rn
+    -- opcode "0110" -> MOV Rn, A     -> rd0 = A, rd1 = zero, wr = Rn
+
     -- determina os sinais de controle no estado DECODE
     jump_en <= '1' when opcode = "1111" else '0';
+
 
     ula_op_s <= "00" when opcode = "0001" or opcode = "0101" or opcode = "0110" else
                 "01" when opcode = "0010" else
@@ -64,11 +70,6 @@ begin
     
     ula_sel_s <= '1' when opcode = "0101" else
                  '0';
-    
-
-    -- opcode "0001" -> ADD A, Rn     -> rd0 = A, rd1 = Rn, wr = A
-    -- opcode "0101" -> MOV Rn, #data -> rd0 = zero, rd1 = zero (#data), wr = Rn
-    -- opcode "0110" -> MOV Rn, A     -> rd0 = A, rd1 = zero, wr = Rn
 
     rd0_sel_s <= '0' when opcode = "0101" else
                  '1' when opcode = "0001" or opcode = "0110"  or opcode = "0010" else

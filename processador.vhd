@@ -82,8 +82,7 @@ architecture a_processador of processador is
             rd0_sel     : out std_logic;            
             rd1_sel     : out std_logic;         
             wr_sel      : out std_logic;       
-            pc_wr       : out std_logic;   
-            ir_wr       : out std_logic;     
+            pc_wr       : out std_logic;      
             jump_en     : out std_logic;                
             reg_wr_en   : out std_logic;           
             ula_sel     : out std_logic;
@@ -99,7 +98,6 @@ architecture a_processador of processador is
     signal instr_reg_out    : unsigned (14 downto 0);
 
     signal pc_wr    : std_logic;
-    signal ir_wr    : std_logic;
     signal jump_sel : std_logic;
     signal rb_wr_en : std_logic;
 
@@ -196,7 +194,6 @@ begin
         rd1_sel   => mux_rd1_sel,
         wr_sel    => mux_wr_sel,
         pc_wr     => pc_wr,
-        ir_wr     => ir_wr,
         jump_en   => jump_sel,
         reg_wr_en => rb_wr_en,
         ula_sel   => mux_ula_sel,
@@ -206,7 +203,8 @@ begin
     relative_addr <= "00000001" when jump_sel = '0' else
                      (instr_reg_out(7 downto 0) - pc_to_rom);
 
-    constant_ula <= "00000000" & instr_reg_out (10 downto 3);
+    constant_ula <= "00000000" & instr_reg_out (10 downto 3) when instr_reg_out (10) = '0' else
+                    "11111111" & instr_reg_out (10 downto 3);	 
 
     src_reg  <= instr_reg_out (5 downto 3);
     dest_reg <= instr_reg_out (2 downto 0);
