@@ -50,11 +50,13 @@ begin
     --DECODE -> escreve instrucao no IR
 
     --EXECUTE -> se a operacao envolve escrita, escreve resultado no RB
-    reg_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010"  or opcode = "0101" or opcode = "0110") else '0';
+    reg_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010" or opcode = "0011" or opcode = "0100" or opcode = "0101" or opcode = "0110") else '0';
 
 
     -- opcode "0001" -> ADD A, Rn     -> rd0 = A, rd1 = Rn, wr = A
     -- opcode "0010" -> SUBB A, Rn    -> rd0 = A, rd1 = Rn, wr = A
+    -- opcode "0011" -> ANL A, #data  -> rd0 = A, rd1 = zero (#data), wr = A
+    -- opcode "0100" -> XRL A, Rn     -> rd0 = A, rd1 = Rn, wr = A
     -- opcode "0101" -> MOV Rn, #data -> rd0 = zero, rd1 = zero (#data), wr = Rn
     -- opcode "0110" -> MOV Rn, A     -> rd0 = A, rd1 = zero, wr = Rn
 
@@ -62,23 +64,23 @@ begin
     jump_en <= '1' when opcode = "1111" else '0';
 
 
-    ula_op_s <= "00" when opcode = "0001" or opcode = "0101" or opcode = "0110" else
+    ula_op_s <= "00" when opcode = "0001"  or  opcode = "0101" or opcode = "0110" else
                 "01" when opcode = "0010" else
                 "10" when opcode = "0011" else
                 "11" when opcode = "0100" else
                 "00";
     
-    ula_sel_s <= '1' when opcode = "0101" else
+    ula_sel_s <= '1' when opcode = "0101"  or opcode = "0011" else
                  '0';
 
     rd0_sel_s <= '0' when opcode = "0101" else
-                 '1' when opcode = "0001" or opcode = "0110"  or opcode = "0010" else
+                 '1' when opcode = "0001" or opcode = "0110"  or opcode = "0010" or opcode = "0011" or opcode = "0100" else
                  '0';
     rd1_sel_s <= '0' when opcode = "0110" else
-                 '1' when opcode = "0001" or opcode = "0010"  else
+                 '1' when opcode = "0001" or opcode = "0010" or opcode = "0100" else
                  '0';
     wr_sel_s <= '0' when opcode = "0101" or opcode = "0110" else
-                '1' when opcode = "0001" or opcode = "0010" else
+                '1' when opcode = "0001" or opcode = "0010" or opcode = "0011" or opcode = "0100" else
                 '0';
     
 

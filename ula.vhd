@@ -20,7 +20,7 @@ begin
 
     saida <= x + y when op = "00" else
              x - y when op = "01" else
-             parc(15 downto 0) when op = "10" else
+             x and y when op = "10" else
              x xor y when op = "11" else
              "0000000000000000";
 
