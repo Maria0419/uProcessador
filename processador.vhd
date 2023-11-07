@@ -20,7 +20,9 @@ architecture a_processador of processador is
         port( 
             x, y  : in unsigned(15 downto 0);
             op    : in unsigned(1 downto 0);
-            saida : out unsigned(15 downto 0)
+            saida : out unsigned(15 downto 0);
+            carry : out std_logic;
+            ula_NE : out std_logic
         );
     end component;
 
@@ -49,6 +51,14 @@ architecture a_processador of processador is
         );
     end component;
 
+    component mux4x1_3bits is
+        port(
+            sel : in unsigned (1 downto 0);
+            i0, i1, i2, i3 : in unsigned (2 downto 0);
+            saida : out unsigned (2 downto 0)
+        );
+    end component;
+    
     component rom is
         port 
         (
@@ -74,19 +84,28 @@ architecture a_processador of processador is
         );
     end component;
 
+    component reg_1bit is
+        port (
+            data_in  : in std_logic;
+            data_out : out std_logic;
+            wr_en, clk, rst : in std_logic
+        );
+    end component;
+
     component uc is
         port (
             clk, rst    : in std_logic;
             opcode      : in unsigned (3 downto 0);
             ula_op      : out unsigned (1 downto 0);  
-            rd0_sel     : out std_logic;            
+            rd0_sel     : out unsigned (1 downto 0);            
             rd1_sel     : out std_logic;         
             wr_sel      : out std_logic;       
             pc_wr       : out std_logic;      
-            jump_en     : out std_logic;                
+            jump_sel    : out unsigned (1 downto 0);                
             reg_wr_en   : out std_logic;           
             ula_sel     : out std_logic;
-            estado      : out unsigned (1 downto 0)
+            estado      : out unsigned (1 downto 0);
+            carry_wr_en : out std_logic
         );
     end component;
 
@@ -96,13 +115,17 @@ architecture a_processador of processador is
     signal pc_to_rom        : unsigned(7 downto 0);
     signal rom_to_instr_reg : unsigned (14 downto 0);
     signal instr_reg_out    : unsigned (14 downto 0);
+    signal ula_to_carry_reg : std_logic;
+    signal carry_ula        : std_logic;
 
-    signal pc_wr    : std_logic;
-    signal jump_sel : std_logic;
-    signal rb_wr_en : std_logic;
+    signal pc_wr       : std_logic;
+    signal jump_sel    : unsigned (1 downto 0);
+    signal rb_wr_en    : std_logic;
+    signal carry_wr_en : std_logic;
+    signal ula_NE      : std_logic;
 
     signal mux_ula_sel : std_logic;
-    signal mux_rd0_sel : std_logic;
+    signal mux_rd0_sel : unsigned (1 downto 0);
     signal mux_rd1_sel : std_logic;
     signal mux_wr_sel  : std_logic;
 
@@ -117,6 +140,8 @@ architecture a_processador of processador is
     signal ula_op        : unsigned (1 downto 0);
     signal constant_ula  : unsigned (15 downto 0);
     signal relative_addr : unsigned (7 downto 0);
+    signal instr_addr    : unsigned (7 downto 0);
+    signal imm_data      : unsigned (7 downto 0);
 
     signal estado_s : unsigned (1 downto 0);
 
@@ -144,10 +169,13 @@ begin
         rst      => rst,
         wr_en    => '1'
     );
-    mux_rd0: mux2x1_3bits port map (
+
+    mux_rd0: mux4x1_3bits port map (
         sel   => mux_rd0_sel,
         i0    => zero,
         i1    => acc,
+        i2    => src_reg,
+        i3    => zero,
         saida => mux_to_rb_rd0
     );
     mux_rd1: mux2x1_3bits port map (
@@ -174,10 +202,12 @@ begin
         out_data1 => rb_to_mux
     );
     ula1: ula port map (
-        x     => rb_to_ula,
-        y     => mux_to_ula,
-        op    => ula_op,
-        saida => ula_to_rb
+        x      => rb_to_ula,
+        y      => mux_to_ula,
+        op     => ula_op,
+        saida  => ula_to_rb,
+        carry  => ula_to_carry_reg,
+        ula_NE => ula_NE
     );
     mux_ula: mux2x1_16bits port map (
         sel   => mux_ula_sel,
@@ -185,31 +215,55 @@ begin
         i1    => constant_ula,
         saida => mux_to_ula 
     );
+    carry_reg: reg_1bit port map (
+        data_in  => ula_to_carry_reg,
+        data_out => carry_ula,
+        clk      => clk,
+        rst      => rst,
+        wr_en    => carry_wr_en
+    );
     uc1: uc port map (
-        clk       => clk,
-        rst       => rst,
-        opcode    => opcode,
-        ula_op    => ula_op,
-        rd0_sel   => mux_rd0_sel,
-        rd1_sel   => mux_rd1_sel,
-        wr_sel    => mux_wr_sel,
-        pc_wr     => pc_wr,
-        jump_en   => jump_sel,
-        reg_wr_en => rb_wr_en,
-        ula_sel   => mux_ula_sel,
-        estado    => estado_s
+        clk         => clk,
+        rst         => rst,
+        opcode      => opcode,
+        ula_op      => ula_op,
+        rd0_sel     => mux_rd0_sel,
+        rd1_sel     => mux_rd1_sel,
+        wr_sel      => mux_wr_sel,
+        pc_wr       => pc_wr,
+        jump_sel     => jump_sel,
+        reg_wr_en   => rb_wr_en,
+        ula_sel     => mux_ula_sel,
+        estado      => estado_s,
+        carry_wr_en => carry_wr_en
     );
 
-    relative_addr <= "00000001" when jump_sel = '0' else
-                     (instr_reg_out(7 downto 0) - pc_to_rom);
+    -- controle da atualizacao do PC
+    relative_addr <= "00000001"               when jump_sel = "00" else   
+                     (instr_addr - pc_to_rom) when jump_sel = "01" else
+                     (instr_addr + 1)         when jump_sel = "10" and carry_ula = '1' else
+                     "00000001"               when jump_sel = "10" and carry_ula = '0' else
+                     (instr_addr + 1)         when jump_sel = "11" and ula_NE = '1' else
+                     "00000001"               when jump_sel = "11" and ula_NE = '0' else
+                     "00000001";
 
-    constant_ula <= "00000000" & instr_reg_out (10 downto 3) when instr_reg_out (10) = '0' else
-                    "11111111" & instr_reg_out (10 downto 3);	 
+    -- extensao de sinal
+    constant_ula <= "00000000" & imm_data when imm_data (7) = '0' else
+                    "11111111" & imm_data when imm_data (7) = '1' else
+                    "0000000000000000"; 
 
+    -- informacoes extraidas da instrucao
     src_reg  <= instr_reg_out (5 downto 3);
     dest_reg <= instr_reg_out (2 downto 0);
     opcode   <= instr_reg_out (14 downto 11);
+    instr_addr <= "00000" & instr_reg_out (2 downto 0) when opcode = "1101" and instr_reg_out(2) = '0' else
+                  "11111" & instr_reg_out (2 downto 0) when opcode = "1101" and instr_reg_out(2) = '1' else
+                  instr_reg_out (7 downto 0);
+    imm_data <= "000" & instr_reg_out (10 downto 6) when opcode = "1101" and instr_reg_out (10) = '0' else
+                "111" & instr_reg_out (10 downto 6) when opcode = "1101" and instr_reg_out (10) = '1' else
+                instr_reg_out (10 downto 3);
 
+    -- pinnout
     estado <= estado_s;
     instr <= instr_reg_out;
     reg1 <= rb_to_ula;
