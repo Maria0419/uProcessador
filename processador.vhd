@@ -84,6 +84,14 @@ architecture a_processador of processador is
         );
     end component;
 
+    component reg_8bits is
+        port (
+            data_i         : in unsigned (7 downto 0);
+            data_o        : out unsigned (7 downto 0);
+            wr_en, clk, rst : in std_logic
+        );
+    end component;
+
     component reg_1bit is
         port (
             data_in  : in std_logic;
@@ -147,6 +155,12 @@ architecture a_processador of processador is
 
     constant acc  : unsigned (2 downto 0) := "111";
     constant zero : unsigned (2 downto 0) := "000";
+
+    signal relative_addr_s : unsigned (7 downto 0);
+    signal relative_addr_cjne : unsigned (7 downto 0);
+    signal ula_NE_s : std_logic;
+    signal ula_NE_in: std_logic;
+    signal ula_NE_out       : std_logic;
 
 begin
 
@@ -238,8 +252,24 @@ begin
         carry_wr_en => carry_wr_en
     );
 
+    addr_NE_reg: reg_8bits port map (
+        data_i  => relative_addr,
+        data_o => relative_addr_cjne,
+        clk      => clk,
+        rst      => rst,
+        wr_en    => '1'
+    );
+
+    ula_NE_reg: reg_1bit port map (
+        data_in  => ula_NE_in,
+        data_out => ula_NE_out,
+        clk      => clk,
+        rst      => rst,
+        wr_en    => '1'
+    );
+
     -- controle da atualizacao do PC
-    relative_addr <= "00000001"               when jump_sel = "00" else   
+    relative_addr_s <= "00000001"               when jump_sel = "00" else   
                      (instr_addr - pc_to_rom) when jump_sel = "01" else
                      (instr_addr + 1)         when jump_sel = "10" and carry_ula = '1' else
                      "00000001"               when jump_sel = "10" and carry_ula = '0' else
@@ -247,6 +277,13 @@ begin
                      "00000001"               when jump_sel = "11" and ula_NE = '0' else
                      "00000001";
 
+    relative_addr <= relative_addr_cjne when (opcode = "0000" and ula_NE_out = '1') else
+                     relative_addr_cjne -1 when (opcode = "1101" and ula_NE_out = '1') else
+                     relative_addr_s;
+
+    ula_NE_in <= '1' when (jump_sel = "11" and ula_NE = '1') or (jump_sel = "11" and ula_NE_out = '1') else
+                 '0';
+                    
     -- extensao de sinal
     constant_ula <= "00000000" & imm_data when imm_data (7) = '0' else
                     "11111111" & imm_data when imm_data (7) = '1' else

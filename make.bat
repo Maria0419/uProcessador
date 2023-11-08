@@ -1,9 +1,6 @@
 ghdl -a ula.vhd
 ghdl -e ula
 
-ghdl -a ula_tb.vhd
-ghdl -e ula_tb
-
 ghdl -a mux_8x1_16bits.vhd
 ghdl -e mux_8x1_16bits
 
@@ -20,6 +17,14 @@ ghdl -e banco_reg
 ghdl -a banco_reg_tb.vhd
 ghdl -e banco_reg_tb
 
+ghdl -a mux4x1_3bits.vhd
+ghdl -e mux4x1_3bits
+
+ghdl -a reg_1bit.vhd
+ghdl -e reg_1bit
+
+ghdl -a reg_3bits.vhd
+ghdl -e reg_3bits
 
 ghdl -a mux2x1_16bits.vhd
 ghdl -e mux2x1_16bits

@@ -10,7 +10,7 @@ ANL -> imm (10-3)
 XRL -> source (5-3)
 MOV Rn, #data -> imm (10-3) | destination (2-0) 
 MOV Rn, A -> destination (2-0)
-CJNE Rn, #data, rel -> source (5-3) | imm (10-6) | relative address (2-0)
+CJNE Rn, #data, rel -> imm (10-6) |source (5-3) | relative address (2-0)
 JC rel - > relative address (7-0) (decimal)
 AJMP -> address (7-0) (decimal)
 
