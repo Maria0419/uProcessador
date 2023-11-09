@@ -7,8 +7,7 @@ entity ula is
         x, y : in unsigned(15 downto 0);
         op : in unsigned(1 downto 0);
         saida : out unsigned(15 downto 0);
-        carry : out std_logic;
-        ula_NE : out std_logic
+        carry : out std_logic
     );
 end ula;
 
@@ -33,7 +32,5 @@ begin
              '1' when op = "01" and y > x else
              '0';
 
-    ula_NE <= '1' when x /= y else
-              '0';
 
 end architecture;

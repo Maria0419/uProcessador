@@ -52,7 +52,7 @@ begin
 
     --EXECUTE -> se a operacao envolve escrita, escreve resultado no RB
     reg_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010" or opcode = "0011" or opcode = "0100" or opcode = "0101" or opcode = "0110") else '0';
-    carry_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010" or opcode = "1101") else '0';
+    carry_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010" ) else '0';
 
     -- opcode "0001" -> ADD A, Rn     -> rd0 = A, rd1 = Rn, wr = A
     -- opcode "0010" -> SUBB A, Rn    -> rd0 = A, rd1 = Rn, wr = A
@@ -61,26 +61,23 @@ begin
     -- opcode "0101" -> MOV Rn, #data -> rd0 = zero, rd1 = zero (#data), wr = Rn
     -- opcode "0110" -> MOV Rn, A     -> rd0 = A, rd1 = zero, wr = Rn
 
-    -- opcode "1101" -> CJNE Rn, #data, rel -> rd0 = Rn, rd1 = zero (#data), wr = zero
 
     -- determina os sinais de controle no estado DECODE
     jump_sel <= "01" when opcode = "1111" else                          --AJMP (absolute jump)
-                "10" when opcode = "1110" else                          --JC (jump if carry is set)
-                "11" when opcode = "1101" else                          --CJNE (compare and jump if not equal)
+                "10" when opcode = "1110" else                          --JC (jump if carry is set)                    
                 "00";
 
     ula_op_s <= "00" when opcode = "0001"  or  opcode = "0101" or opcode = "0110" else
-                "01" when opcode = "0010" or opcode = "1101" else
+                "01" when opcode = "0010" else
                 "10" when opcode = "0011" else
                 "11" when opcode = "0100" or opcode = "0111" else
                 "00";
     
-    ula_sel_s <= '1' when opcode = "0101"  or opcode = "0011" or opcode = "1101" else
+    ula_sel_s <= '1' when opcode = "0101"  or opcode = "0011" else
                  '0';
 
     rd0_sel_s <= "00" when opcode = "0101" else
                  "01" when opcode = "0001" or opcode = "0110"  or opcode = "0010" or opcode = "0011" or opcode = "0100" else
-                 "10" when opcode = "1101" else
                  "00";
 
     rd1_sel_s <= '0' when opcode = "0110" else

@@ -21,8 +21,7 @@ architecture a_processador of processador is
             x, y  : in unsigned(15 downto 0);
             op    : in unsigned(1 downto 0);
             saida : out unsigned(15 downto 0);
-            carry : out std_logic;
-            ula_NE : out std_logic
+            carry : out std_logic
         );
     end component;
 
@@ -130,7 +129,6 @@ architecture a_processador of processador is
     signal jump_sel    : unsigned (1 downto 0);
     signal rb_wr_en    : std_logic;
     signal carry_wr_en : std_logic;
-    signal ula_NE      : std_logic;
 
     signal mux_ula_sel : std_logic;
     signal mux_rd0_sel : unsigned (1 downto 0);
@@ -156,11 +154,6 @@ architecture a_processador of processador is
     constant acc  : unsigned (2 downto 0) := "111";
     constant zero : unsigned (2 downto 0) := "000";
 
-    signal relative_addr_s : unsigned (7 downto 0);
-    signal relative_addr_cjne : unsigned (7 downto 0);
-    signal ula_NE_s : std_logic;
-    signal ula_NE_in: std_logic;
-    signal ula_NE_out       : std_logic;
 
 begin
 
@@ -220,8 +213,7 @@ begin
         y      => mux_to_ula,
         op     => ula_op,
         saida  => ula_to_rb,
-        carry  => ula_to_carry_reg,
-        ula_NE => ula_NE
+        carry  => ula_to_carry_reg
     );
     mux_ula: mux2x1_16bits port map (
         sel   => mux_ula_sel,
@@ -252,38 +244,14 @@ begin
         carry_wr_en => carry_wr_en
     );
 
-    addr_NE_reg: reg_8bits port map (
-        data_i  => relative_addr,
-        data_o => relative_addr_cjne,
-        clk      => clk,
-        rst      => rst,
-        wr_en    => '1'
-    );
-
-    ula_NE_reg: reg_1bit port map (
-        data_in  => ula_NE_in,
-        data_out => ula_NE_out,
-        clk      => clk,
-        rst      => rst,
-        wr_en    => '1'
-    );
 
     -- controle da atualizacao do PC
-    relative_addr_s <= "00000001"               when jump_sel = "00" else   
+    relative_addr <= "00000001"               when jump_sel = "00" else   
                      (instr_addr - pc_to_rom) when jump_sel = "01" else
                      (instr_addr + 1)         when jump_sel = "10" and carry_ula = '1' else
                      "00000001"               when jump_sel = "10" and carry_ula = '0' else
-                     (instr_addr + 1)         when jump_sel = "11" and ula_NE = '1' else
-                     "00000001"               when jump_sel = "11" and ula_NE = '0' else
                      "00000001";
 
-    relative_addr <= relative_addr_cjne when (opcode = "0000" and ula_NE_out = '1') else
-                     relative_addr_cjne -1 when (opcode = "1101" and ula_NE_out = '1') else
-                     relative_addr_s;
-
-    ula_NE_in <= '1' when (jump_sel = "11" and ula_NE = '1') or (jump_sel = "11" and ula_NE_out = '1') else
-                 '0';
-                    
     -- extensao de sinal
     constant_ula <= "00000000" & imm_data when imm_data (7) = '0' else
                     "11111111" & imm_data when imm_data (7) = '1' else
@@ -293,12 +261,8 @@ begin
     src_reg  <= instr_reg_out (5 downto 3);
     dest_reg <= instr_reg_out (2 downto 0);
     opcode   <= instr_reg_out (14 downto 11);
-    instr_addr <= "00000" & instr_reg_out (2 downto 0) when opcode = "1101" and instr_reg_out(2) = '0' else
-                  "11111" & instr_reg_out (2 downto 0) when opcode = "1101" and instr_reg_out(2) = '1' else
-                  instr_reg_out (7 downto 0);
-    imm_data <= "000" & instr_reg_out (10 downto 6) when opcode = "1101" and instr_reg_out (10) = '0' else
-                "111" & instr_reg_out (10 downto 6) when opcode = "1101" and instr_reg_out (10) = '1' else
-                instr_reg_out (10 downto 3);
+    instr_addr <=  instr_reg_out (7 downto 0);
+    imm_data <=  instr_reg_out (10 downto 3);
 
     -- pinnout
     estado <= estado_s;
