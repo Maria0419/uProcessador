@@ -72,7 +72,7 @@ begin
     ula_op_s <= "00" when opcode = "0001"  or  opcode = "0101" or opcode = "0110" else
                 "01" when opcode = "0010" or opcode = "1101" else
                 "10" when opcode = "0011" else
-                "11" when opcode = "0100" else
+                "11" when opcode = "0100" or opcode = "0111" else
                 "00";
     
     ula_sel_s <= '1' when opcode = "0101"  or opcode = "0011" or opcode = "1101" else
