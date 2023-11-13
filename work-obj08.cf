@@ -29,9 +29,9 @@ file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessad
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\maq_estados.vhd" "fe60daa117f09e00df9db1fbcdd2874ca049860c" "20231107211103.706":
   entity maq_estados at 1( 0) + 0 on 135;
   architecture a_maq_estados of maq_estados at 13( 281) + 0 on 136;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "dc641da884c271a4104c66f419e60d6623bf143d" "20231107211656.619":
-  entity rom at 1( 0) + 0 on 143;
-  architecture a_rom of rom at 14( 242) + 0 on 144;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom.vhd" "cbcf3f6f639d15bbc8f0c6e1601f6784697a2ce5" "20231113164419.763":
+  entity rom at 1( 0) + 0 on 159;
+  architecture a_rom of rom at 14( 242) + 0 on 160;
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\rom_tb.vhd" "00a3a9b50355957f47a871647fcbfe88af86fe73" "20231016035756.855":
   entity rom_tb at 1( 0) + 0 on 17;
   architecture a_rom_tb of rom_tb at 8( 107) + 0 on 18;
@@ -44,9 +44,9 @@ file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessad
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\pc_tb.vhd" "de5331533dc7fe9971026175502bfccb06eda40e" "20231019024221.482":
   entity pc_tb at 1( 0) + 0 on 67;
   architecture a_pc_tb of pc_tb at 8( 105) + 0 on 68;
-file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc.vhd" "0dff62207e1fc41cd32f756e1d9eade71c8fc240" "20231107211047.817":
-  entity uc at 1( 0) + 0 on 133;
-  architecture a_uc of uc at 24( 1063) + 0 on 134;
+file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\uc.vhd" "0466756f10d5b47b1e0522e13dad6da341b17723" "20231113164246.459":
+  entity uc at 1( 0) + 0 on 157;
+  architecture a_uc of uc at 24( 1063) + 0 on 158;
 file / "c:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\toplevel2.vhd" "0b29adf06534e830422bd7201c78026e4da1d01a" "20231019022203.337":
   entity toplevel2 at 1( 0) + 0 on 61;
   architecture a_toplevel2 of toplevel2 at 13( 223) + 0 on 62;

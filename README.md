@@ -10,6 +10,7 @@ ANL -> imm (10-3)
 XRL -> source (5-3)
 MOV Rn, #data -> imm (10-3) | destination (2-0) 
 MOV Rn, A -> destination (2-0)
+MOV A, #data -> imm (10-3)
 JC rel - > relative address (7-0) (decimal)
 AJMP -> address (7-0) (decimal)
 CLR -> 
@@ -24,6 +25,7 @@ INSTRUCTION SET + OPCODES
 0x5 | 0101  -> MOV Rn, #data  
 0x6 | 0110  -> MOV Rn, A   
 0x7 | 0111  -> CLR C
+0x8 | 1000  -> MOV A, #data
 0xE | 1110  -> JC rel  
 0xF | 1111  -> AJMP addr
 
