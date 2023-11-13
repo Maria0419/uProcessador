@@ -17,7 +17,8 @@ entity uc is
         jump_sel    : out unsigned (1 downto 0);    --selecao do endereco de salto
         reg_wr_en   : out std_logic;                --escrever no RB
         ula_sel     : out std_logic;                --selecao registrador ('0') ou constante ('1')
-        carry_wr_en : out std_logic                 --write enable do registrador carry
+        carry_wr_en : out std_logic;                --write enable do registrador carry
+        carry_rst   : out std_logic                 --reset do registrador carry
     );
 end entity;
 
@@ -53,6 +54,7 @@ begin
     --EXECUTE -> se a operacao envolve escrita, escreve resultado no RB
     reg_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010" or opcode = "0011" or opcode = "0100" or opcode = "0101" or opcode = "1000" or opcode = "0110") else '0';
     carry_wr_en <= '1' when estado_s = "01" and (opcode = "0001" or opcode = "0010" ) else '0';
+    carry_rst <= '1' when estado_s = "10" and opcode = "0111" else '0';
 
     -- opcode "0001" -> ADD A, Rn     -> rd0 = A, rd1 = Rn, wr = A
     -- opcode "0010" -> SUBB A, Rn    -> rd0 = A, rd1 = Rn, wr = A
@@ -70,7 +72,7 @@ begin
     ula_op_s <= "00" when opcode = "0001"  or  opcode = "0101" or opcode = "0110" or opcode = "1000" else
                 "01" when opcode = "0010" else
                 "10" when opcode = "0011" else
-                "11" when opcode = "0100" or opcode = "0111" else
+                "11" when opcode = "0100" else
                 "00";
     
     ula_sel_s <= '1' when opcode = "0101"  or opcode = "0011" or opcode = "1000" else

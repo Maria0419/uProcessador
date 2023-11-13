@@ -13,7 +13,6 @@ MOV Rn, A -> destination (2-0)
 MOV A, #data -> imm (10-3)
 JC rel - > relative address (7-0) (decimal)
 AJMP -> address (7-0) (decimal)
-CLR -> 
 
 
 INSTRUCTION SET + OPCODES

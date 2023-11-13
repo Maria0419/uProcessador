@@ -112,7 +112,8 @@ architecture a_processador of processador is
             reg_wr_en   : out std_logic;           
             ula_sel     : out std_logic;
             estado      : out unsigned (1 downto 0);
-            carry_wr_en : out std_logic
+            carry_wr_en : out std_logic;
+            carry_rst   : out std_logic
         );
     end component;
 
@@ -124,11 +125,13 @@ architecture a_processador of processador is
     signal instr_reg_out    : unsigned (14 downto 0);
     signal ula_to_carry_reg : std_logic;
     signal carry_ula        : std_logic;
+    signal carry_rst_uc     : std_logic;
 
     signal pc_wr       : std_logic;
     signal jump_sel    : unsigned (1 downto 0);
     signal rb_wr_en    : std_logic;
     signal carry_wr_en : std_logic;
+    signal carry_rst   : std_logic;
 
     signal mux_ula_sel : std_logic;
     signal mux_rd0_sel : unsigned (1 downto 0);
@@ -225,7 +228,7 @@ begin
         data_in  => ula_to_carry_reg,
         data_out => carry_ula,
         clk      => clk,
-        rst      => rst,
+        rst      => carry_rst,
         wr_en    => carry_wr_en
     );
     uc1: uc port map (
@@ -241,9 +244,11 @@ begin
         reg_wr_en   => rb_wr_en,
         ula_sel     => mux_ula_sel,
         estado      => estado_s,
-        carry_wr_en => carry_wr_en
+        carry_wr_en => carry_wr_en,
+        carry_rst   => carry_rst_uc
     );
 
+    carry_rst <= rst or carry_rst_uc;
 
     -- controle da atualizacao do PC
     relative_addr <= "00000001"               when jump_sel = "00" else   
