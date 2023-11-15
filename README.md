@@ -4,15 +4,17 @@ a VHDL microprocessor
 INSTRUCTION (14-0)
 opcode (14-11)
 
-ADD -> source (5-3)
-SUBB -> source (5-3)
-ANL -> imm (10-3)
-XRL -> source (5-3)
-MOV Rn, #data -> imm (10-3) | destination (2-0) 
-MOV Rn, A -> destination (2-0)
-MOV A, #data -> imm (10-3)
-JC rel - > relative address (7-0) (decimal)
-AJMP -> address (7-0) (decimal)
+NOP           -> --
+ADD A, Rn     -> source (5-3)
+SUBB A, Rn    -> source (5-3)
+ANL A, #data  -> immediate (10-3)
+XRL A, Rn     -> source (5-3)
+MOV Rn, #data -> immediate (10-3) | destination (2-0) 
+MOV Rn, A     -> destination (2-0)
+CLR C         -> --
+MOV A, #data  -> immediate (10-3)
+JC rel        -> relative address (7-0) (decimal)
+AJMP          -> address (7-0) (decimal)
 
 
 INSTRUCTION SET + OPCODES
@@ -29,6 +31,6 @@ INSTRUCTION SET + OPCODES
 0xF | 1111  -> AJMP addr
 
 REGISTERS
-x0 -> zero (constant)
+x0    -> zero (constant)
 x1-x6 -> general use (R1-R6)
-x7 -> accumulator (A)
+x7    -> accumulator (A)
