@@ -21,7 +21,8 @@ architecture a_processador of processador is
             x, y  : in unsigned(15 downto 0);
             op    : in unsigned(1 downto 0);
             saida : out unsigned(15 downto 0);
-            carry : out std_logic
+            carry : out std_logic;
+            overflow : out std_logic
         );
     end component;
 
@@ -113,7 +114,8 @@ architecture a_processador of processador is
             ula_sel     : out std_logic;
             estado      : out unsigned (1 downto 0);
             carry_wr_en : out std_logic;
-            carry_rst   : out std_logic
+            carry_rst   : out std_logic;
+            ov_wr_en    : out std_logic
         );
     end component;
 
@@ -126,6 +128,10 @@ architecture a_processador of processador is
     signal ula_to_carry_reg : std_logic;
     signal carry_ula        : std_logic;
     signal carry_rst_uc     : std_logic;
+
+    signal ula_to_ov_reg    : std_logic;
+    signal ov_ula           : std_logic;
+    signal ov_wr_en         : std_logic;
 
     signal pc_wr       : std_logic;
     signal jump_sel    : unsigned (1 downto 0);
@@ -216,7 +222,8 @@ begin
         y      => mux_to_ula,
         op     => ula_op,
         saida  => ula_to_rb,
-        carry  => ula_to_carry_reg
+        carry  => ula_to_carry_reg,
+        overflow => ula_to_ov_reg
     );
     mux_ula: mux2x1_16bits port map (
         sel   => mux_ula_sel,
@@ -231,6 +238,13 @@ begin
         rst      => carry_rst,
         wr_en    => carry_wr_en
     );
+    ov_reg: reg_1bit port map (
+        data_in  => ula_to_ov_reg,
+        data_out => ov_ula,
+        clk      => clk,
+        rst      => rst,
+        wr_en    => ov_wr_en
+    );
     uc1: uc port map (
         clk         => clk,
         rst         => rst,
@@ -240,12 +254,13 @@ begin
         rd1_sel     => mux_rd1_sel,
         wr_sel      => mux_wr_sel,
         pc_wr       => pc_wr,
-        jump_sel     => jump_sel,
+        jump_sel    => jump_sel,
         reg_wr_en   => rb_wr_en,
         ula_sel     => mux_ula_sel,
         estado      => estado_s,
         carry_wr_en => carry_wr_en,
-        carry_rst   => carry_rst_uc
+        carry_rst   => carry_rst_uc,
+        ov_wr_en    => ov_wr_en
     );
 
     carry_rst <= rst or carry_rst_uc;
