@@ -35,11 +35,11 @@ architecture a_processador of processador is
         );
     end component;
 
-    component mux2x1_16bits is
+    component mux4x1_16bits is
         port(
-            sel    : in std_logic;
-            i0, i1 : in unsigned (15 downto 0);
-            saida  : out unsigned (15 downto 0)
+            sel            : in unsigned (1 downto 0);
+            i0, i1, i2, i3 : in unsigned (15 downto 0);
+            saida          : out unsigned (15 downto 0)
         );
     end component;
 
@@ -111,13 +111,25 @@ architecture a_processador of processador is
             pc_wr       : out std_logic;      
             jump_sel    : out unsigned (1 downto 0);                
             reg_wr_en   : out std_logic;           
-            ula_sel     : out std_logic;
+            ula_sel     : out unsigned (1 downto 0);
             estado      : out unsigned (1 downto 0);
             carry_wr_en : out std_logic;
             carry_rst   : out std_logic;
-            ov_wr_en    : out std_logic
+            ov_wr_en    : out std_logic;
+            ram_wr_en   : out std_logic
         );
     end component;
+
+    component ram is
+        port( 
+            clk      : in std_logic;
+            endereco : in unsigned(7 downto 0);
+            wr_en    : in std_logic;
+            dado_in  : in unsigned(15 downto 0);
+            dado_out : out unsigned(15 downto 0) 
+        );
+    end component;
+
 
     signal rb_to_ula        : unsigned(15 downto 0);
     signal rb_to_mux        : unsigned(15 downto 0);
@@ -128,6 +140,7 @@ architecture a_processador of processador is
     signal ula_to_carry_reg : std_logic;
     signal carry_ula        : std_logic;
     signal carry_rst_uc     : std_logic;
+    signal ram_out          : unsigned(15 downto 0);
 
     signal ula_to_ov_reg    : std_logic;
     signal ov_ula           : std_logic;
@@ -138,8 +151,9 @@ architecture a_processador of processador is
     signal rb_wr_en    : std_logic;
     signal carry_wr_en : std_logic;
     signal carry_rst   : std_logic;
+    signal ram_wr_en   : std_logic;
 
-    signal mux_ula_sel : std_logic;
+    signal mux_ula_sel : unsigned (1 downto 0);
     signal mux_rd0_sel : unsigned (1 downto 0);
     signal mux_rd1_sel : std_logic;
     signal mux_wr_sel  : std_logic;
@@ -149,7 +163,7 @@ architecture a_processador of processador is
     signal mux_to_rb_wr  : unsigned (2 downto 0);
     signal mux_to_ula    : unsigned(15 downto 0);
 
-    signal src_reg       : unsigned (2 downto 0);
+    signal src_mem_reg   : unsigned (2 downto 0);
     signal dest_reg      : unsigned (2 downto 0);
     signal opcode        : unsigned (3 downto 0);
     signal ula_op        : unsigned (1 downto 0);
@@ -158,10 +172,13 @@ architecture a_processador of processador is
     signal instr_addr    : unsigned (7 downto 0);
     signal imm_data      : unsigned (7 downto 0);
 
+    signal endereco_ram  : unsigned (7 downto 0);
+
     signal estado_s : unsigned (1 downto 0);
 
     constant acc  : unsigned (2 downto 0) := "111";
     constant zero : unsigned (2 downto 0) := "000";
+    constant zero_16bits : unsigned (15 downto 0) := "0000000000000000";
 
 
 begin
@@ -190,14 +207,14 @@ begin
         sel   => mux_rd0_sel,
         i0    => zero,
         i1    => acc,
-        i2    => src_reg,
+        i2    => src_mem_reg,
         i3    => zero,
         saida => mux_to_rb_rd0
     );
     mux_rd1: mux2x1_3bits port map (
         sel   => mux_rd1_sel,
         i0    => zero,
-        i1    => src_reg,
+        i1    => src_mem_reg,
         saida => mux_to_rb_rd1
     );
     mux_wr: mux2x1_3bits port map (
@@ -225,10 +242,12 @@ begin
         carry  => ula_to_carry_reg,
         overflow => ula_to_ov_reg
     );
-    mux_ula: mux2x1_16bits port map (
+    mux_ula: mux4x1_16bits port map (
         sel   => mux_ula_sel,
         i0    => rb_to_mux,
         i1    => constant_ula,
+        i2    => ram_out,
+        i3    => zero_16bits,
         saida => mux_to_ula 
     );
     carry_reg: reg_1bit port map (
@@ -260,8 +279,17 @@ begin
         estado      => estado_s,
         carry_wr_en => carry_wr_en,
         carry_rst   => carry_rst_uc,
-        ov_wr_en    => ov_wr_en
+        ov_wr_en    => ov_wr_en,
+        ram_wr_en   => ram_wr_en
     );
+
+    ram1: ram port map (
+            clk      => clk,
+            endereco => endereco_ram,
+            wr_en    => ram_wr_en,
+            dado_in  => rb_to_ula,
+            dado_out => ram_out
+      );
 
     carry_rst <= rst or carry_rst_uc;
 
@@ -277,8 +305,11 @@ begin
                     "11111111" & imm_data when imm_data (7) = '1' else
                     "0000000000000000"; 
 
+    -- endereco da ram dentro do registrador
+    endereco_ram <= rb_to_mux (7 downto 0);
+
     -- informacoes extraidas da instrucao
-    src_reg  <= instr_reg_out (5 downto 3);
+    src_mem_reg  <= instr_reg_out (5 downto 3);
     dest_reg <= instr_reg_out (2 downto 0);
     opcode   <= instr_reg_out (14 downto 11);
     instr_addr <=  instr_reg_out (7 downto 0);

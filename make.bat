@@ -26,8 +26,8 @@ ghdl -e reg_1bit
 ghdl -a reg_3bits.vhd
 ghdl -e reg_3bits
 
-ghdl -a mux2x1_16bits.vhd
-ghdl -e mux2x1_16bits
+ghdl -a mux4x1_16bits.vhd
+ghdl -e mux4x1_16bits
 
 ghdl -a reg_8bits.vhd
 ghdl -e reg_8bits
@@ -55,6 +55,9 @@ ghdl -e maq_estados
 
 ghdl -a uc.vhd
 ghdl -e uc
+
+ghdl -a ram.vhd
+ghdl -e ram
 
 ghdl -a processador.vhd
 ghdl -e processador

@@ -13,6 +13,8 @@ MOV Rn, #data -> immediate (10-3) | destination (2-0)
 MOV Rn, A     -> destination (2-0)
 CLR C         -> --
 MOV A, #data  -> immediate (10-3)
+MOV A, @Ri    -> memory register (5-3)
+MOV @Ri, A    -> memory register (5-3)
 JC rel        -> relative address (7-0) (decimal)
 AJMP          -> address (7-0) (decimal)
 
@@ -27,6 +29,8 @@ INSTRUCTION SET + OPCODES
 0x6 | 0110  -> MOV Rn, A   
 0x7 | 0111  -> CLR C
 0x8 | 1000  -> MOV A, #data
+0x9 | 1001  -> MOV A, @Ri
+0xA | 1010  -> MOV @Ri, A
 0xE | 1110  -> JC rel  
 0xF | 1111  -> AJMP addr
 
