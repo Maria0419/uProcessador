@@ -67,7 +67,7 @@ begin
     -- opcode "0101" -> MOV Rn, #data -> rd0 = zero, rd1 = zero (#data), wr = Rn
     -- opcode "0110" -> MOV Rn, A     -> rd0 = A, rd1 = zero, wr = Rn
     -- opcode "1001" -> MOV A, @Ri    -> rd0 = zero, rd1 = Ri (mem_out), wr = A
-    -- opcode "1010" -> MOV @Ri, A    -> rd0 = A, rd1 = zero, wr = Rn (reg_wr_en = '0'), ram_wr_en = '1'
+    -- opcode "1010" -> MOV @Ri, A    -> rd0 = A, rd1 = Ri, wr = Rn (reg_wr_en = '0'), ram_wr_en = '1'
 
 
     -- determina os sinais de controle no estado DECODE
@@ -75,7 +75,7 @@ begin
                 "10" when opcode = "1110" else                          --JC (jump if carry is set)                    
                 "00";
 
-            ula_op_s <= "00" when opcode = "0001"  or  opcode = "0101" or opcode = "0110" or opcode = "1000" or opcode = "1001" else
+    ula_op_s <= "00" when opcode = "0001"  or  opcode = "0101" or opcode = "0110" or opcode = "1000" or opcode = "1001" else
                 "01" when opcode = "0010" else
                 "10" when opcode = "0011" else
                 "11" when opcode = "0100" else
@@ -90,7 +90,7 @@ begin
                  "00";
 
     rd1_sel_s <= '0' when opcode = "0110" or opcode = "0011" or opcode = "0101" or opcode = "1000" else
-                 '1' when opcode = "0001" or opcode = "0010" or opcode = "0100" or opcode = "1001" else
+                 '1' when opcode = "0001" or opcode = "0010" or opcode = "0100" or opcode = "1001" or opcode = "1010" else
                  '0';
                  
     wr_sel_s <= '0' when opcode = "0101" or opcode = "0110" else
