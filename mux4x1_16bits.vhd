@@ -4,9 +4,9 @@ use ieee.numeric_std.all;
 
 entity mux4x1_16bits is
     port(
-        sel : in unsigned (1 downto 0);
+        sel            : in unsigned (1 downto 0);
         i0, i1, i2, i3 : in unsigned (15 downto 0);
-        saida : out unsigned (15 downto 0)
+        saida          : out unsigned (15 downto 0)
     );
 end entity;
 

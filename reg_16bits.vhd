@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity reg_16bits is
     port (
-        data_in  : in unsigned (15 downto 0);
-        data_out : out unsigned (15 downto 0);
+        data_in         : in unsigned (15 downto 0);
+        data_out        : out unsigned (15 downto 0);
         wr_en, clk, rst : in std_logic
     );
 end reg_16bits;
@@ -28,4 +28,5 @@ begin
     end process;
 
     data_out <= reg;
+    
 end architecture;

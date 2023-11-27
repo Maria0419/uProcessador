@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity reg_8bits is
     port (
-        data_i  : in unsigned (7 downto 0);
-        data_o : out unsigned (7 downto 0);
+        data_in         : in unsigned (7 downto 0);
+        data_out        : out unsigned (7 downto 0);
         wr_en, clk, rst : in std_logic
     );
 end reg_8bits;
@@ -22,10 +22,11 @@ begin
             reg <= "00000000";
         elsif (wr_en = '1') then
             if (rising_edge(clk)) then
-                reg <= data_i;
+                reg <= data_in;
             end if;
         end if;
     end process;
 
-    data_o <= reg;
+    data_out <= reg;
+
 end architecture;

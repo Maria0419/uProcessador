@@ -8,38 +8,34 @@ end;
 architecture a_processador_tb of processador_tb is
     component processador is
         port(
-        clk : in std_logic;
-        rst : in std_logic;
-        estado : out unsigned (1 downto 0);
-        instr : out unsigned (14 downto 0);
-        reg1 : out unsigned (15 downto 0);
-        reg2 : out unsigned (15 downto 0);
+        clk     : in std_logic;
+        rst     : in std_logic;
+        estado  : out unsigned (1 downto 0);
+        instr   : out unsigned (14 downto 0);
+        reg1    : out unsigned (15 downto 0);
+        reg2    : out unsigned (15 downto 0);
         ula_out : out unsigned (15 downto 0)
         );
     end component;
 
-
-    constant period_time            : time       := 100 ns;     -- periodo do clock
-    signal finished                 : std_logic  := '0';        -- flag finalizacao da simulacao
-    signal rst_s, clk_s    : std_logic;                
-    signal estado_s        : unsigned (1 downto 0);
-    signal instr_s         : unsigned (14 downto 0);
-    signal reg1_s, reg2_s, ula_out_s   : unsigned (15 downto 0);
-
-
-
+    constant period_time             : time       := 100 ns;     -- periodo do clock
+    signal finished                  : std_logic  := '0';        -- flag finalizacao da simulacao
+    signal rst_s, clk_s              : std_logic;                
+    signal estado_s                  : unsigned (1 downto 0);
+    signal instr_s                   : unsigned (14 downto 0);
+    signal reg1_s, reg2_s, ula_out_s : unsigned (15 downto 0);
 
 begin
+
     uut: processador port map (
-        clk => clk_s,
-        rst => rst_s,
-        estado => estado_s,
-        instr => instr_s,
-        reg1 => reg1_s,
-        reg2 => reg2_s,
+        clk     => clk_s,
+        rst     => rst_s,
+        estado  => estado_s,
+        instr   => instr_s,
+        reg1    => reg1_s,
+        reg2    => reg2_s,
         ula_out => ula_out_s
     );
-
 
     -- reset global / simulation time / clock
 
@@ -71,6 +67,5 @@ begin
         end loop;
         wait;
     end process;
-
 
 end architecture;

@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity reg_1bit is
     port (
-        data_in  : in std_logic;
-        data_out : out std_logic;
+        data_in         : in std_logic;
+        data_out        : out std_logic;
         wr_en, clk, rst : in std_logic
     );
 end reg_1bit;
@@ -28,4 +28,5 @@ begin
     end process;
 
     data_out <= reg;
+    
 end architecture;

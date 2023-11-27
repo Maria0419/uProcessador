@@ -4,9 +4,9 @@ use ieee.numeric_std.all;
 
 entity mux2x1_3bits is
     port(
-        sel : in std_logic;
+        sel    : in std_logic;
         i0, i1 : in unsigned (2 downto 0);
-        saida : out unsigned (2 downto 0)
+        saida  : out unsigned (2 downto 0)
     );
 end entity;
 

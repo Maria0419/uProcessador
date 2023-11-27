@@ -1,14 +1,18 @@
+----------------------------------------------
+---------------MEMÓRIA RAM--------------------
+----------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity ram is
    port( 
-         clk      : in std_logic;
-         endereco : in unsigned(7 downto 0);
-         wr_en    : in std_logic;
-         dado_in  : in unsigned(15 downto 0);
-         dado_out : out unsigned(15 downto 0) 
+         clk      : in std_logic;                  --clock
+         endereco : in unsigned(7 downto 0);       --endereço de leitura/escrita
+         wr_en    : in std_logic;                  --write enable
+         dado_in  : in unsigned(15 downto 0);      --dado de entrada
+         dado_out : out unsigned(15 downto 0)      --dado de saída
    );
 end entity;
 
@@ -19,6 +23,7 @@ architecture a_ram of ram is
    signal conteudo_ram : mem;
 
 begin
+
    process(clk, wr_en)
    begin
       if rising_edge(clk) then
@@ -27,5 +32,7 @@ begin
          end if;
       end if;
    end process;
+
    dado_out <= conteudo_ram(to_integer(endereco));
+   
 end architecture;
