@@ -9,8 +9,8 @@ architecture a_pc_tb of pc_tb is
 
     component pc is
         port(
-            data_i : in unsigned (7 downto 0);
-            data_o : out unsigned (7 downto 0);
+            increase        : in unsigned (7 downto 0);
+            data_o          : out unsigned (7 downto 0);
             clk, wr_en, rst : in std_logic
         );
     end component;
@@ -25,7 +25,7 @@ architecture a_pc_tb of pc_tb is
 
 begin
 
-    uut: pc port map (data_i => data_i_s,
+    uut: pc port map (increase => data_i_s,
                       data_o => data_o_s,
                       clk    => clk_s,
                       wr_en  => wr_en_s,

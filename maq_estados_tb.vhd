@@ -7,15 +7,16 @@ end;
 
 architecture a_maq_estados_tb of maq_estados_tb is
     component maq_estados
-        port( clk, rst: in std_logic;
-              estado: out std_logic
+        port(         
+            clk, rst : in std_logic;
+            estado   : out unsigned (1 downto 0)
         );
     end component;
 
     constant period_time : time       := 100 ns;
     signal finished      : std_logic  := '0';
     signal clk, rst : std_logic;
-    signal estado : std_logic;
+    signal estado : unsigned (1 downto 0);
 
 begin
     uut: maq_estados port map (  

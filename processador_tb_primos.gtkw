@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Wed Nov 29 18:30:29 2023
+[*]
+[dumpfile] "C:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\processador_tb.ghw"
+[dumpfile_mtime] "Wed Nov 29 18:23:22 2023"
+[dumpfile_size] 443025
+[savefile] "C:\Users\annin\OneDrive\Documentos\UTFPR\ArqComp\uProcessador\uProcessador\processador_tb_primos.gtkw"
+[timestart] 226400000000
+[size] 1366 705
+[pos] -35 -35
+*-35.000000 332300000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.processador_tb.
+[sst_width] 197
+[signals_width] 110
+[sst_expanded] 1
+[sst_vpaned_height] 190
+@25
+#{top.processador_tb.r5_s[15:0]} top.processador_tb.r5_s[15] top.processador_tb.r5_s[14] top.processador_tb.r5_s[13] top.processador_tb.r5_s[12] top.processador_tb.r5_s[11] top.processador_tb.r5_s[10] top.processador_tb.r5_s[9] top.processador_tb.r5_s[8] top.processador_tb.r5_s[7] top.processador_tb.r5_s[6] top.processador_tb.r5_s[5] top.processador_tb.r5_s[4] top.processador_tb.r5_s[3] top.processador_tb.r5_s[2] top.processador_tb.r5_s[1] top.processador_tb.r5_s[0]
+[pattern_trace] 1
+[pattern_trace] 0

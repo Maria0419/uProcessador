@@ -9,7 +9,7 @@ for linha in arquivo:
     if linha:
         linhas_descomentadas.append(linha)
 
-#processar labels
+#mapear labels e listar instrucoes
 labels = {}
 instrucoes = []
 for i, linha in enumerate(linhas_descomentadas):
@@ -18,6 +18,7 @@ for i, linha in enumerate(linhas_descomentadas):
     else:
         labels[linha[:-1]] = len(instrucoes)
 
+#metodo para converter decimal para string binaria
 def dec_string_to_bin(num):
     if int(num) < 0:
         num = bin((1 << 8) + int(num))[2:]
@@ -36,10 +37,11 @@ for addr, instr in enumerate(instrucoes):
     
 
     #processar argumentos
-    #se instrucao tem 2 argumentos
+    #separar argumentos se instrucao tem 2 argumentos
     if ',' in args_instr:
         args_instr = [arg.strip() for arg in args_instr.split(',')]
 
+    #converter instrucao em string binaria
     match nome_instr:
         case 'nop':
             opcode = "0000"
@@ -260,8 +262,8 @@ for addr, instr in enumerate(instrucoes):
             raise Exception(f'Instrução {nome_instr} não reconhecida')
         
     instrucoes_bin.append(instr_bin)
-    instrucoes_bin_vhdl.append(str(addr) + " => " + 'B"' + instr_bin + '"' + "," + "\t-- " + instr)
+    instrucoes_bin_vhdl.append(str(addr) + "\t=>\t" + 'B"' + instr_bin + '"' + "," + " \t-- " + instr)
 
-#salvar arquivo com instrucoes em binario no vhdl
+#salvar arquivo com instrucoes em binario no vhdl para serem colocadas na ROM
 with open('instrucoes_bin_vhdl.txt', 'w') as f:
     f.write('\n'.join(instrucoes_bin_vhdl))

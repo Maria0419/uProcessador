@@ -8,11 +8,12 @@ end;
 architecture a_banco_reg_tb of banco_reg_tb is 
     component banco_reg is
         port (
-        rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);
-        wr_data : in unsigned (15 downto 0);
-        out_data0, out_data1 : out unsigned (15 downto 0);
-        wr_en, clk, rst : in std_logic
-    );
+            r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0);
+            rd_reg0, rd_reg1, wr_reg       : in unsigned (2 downto 0);
+            wr_data                        : in unsigned (15 downto 0);
+            out_data0, out_data1           : out unsigned (15 downto 0);
+            wr_en, clk, rst                : in std_logic 
+        );
     end component;
 
     constant period_time : time       := 100 ns;
@@ -20,17 +21,26 @@ architecture a_banco_reg_tb of banco_reg_tb is
     signal clk, reset, wr_enable : std_logic;
     signal read0, read1, write1 : unsigned(2 downto 0);
     signal data_in1, data_out0, data_out1 : unsigned(15 downto 0);
+    signal r0, r1, r2, r3, r4, r5, r6, r7 : unsigned(15 downto 0);
 
 begin
     uut: banco_reg port map (
-        clk => clk,
-        rst => reset,
-        wr_en => wr_enable,
-        wr_data=> data_in1,
-        rd_reg0 => read0,
-        rd_reg1 => read1,
-        wr_reg => write1,
-        out_data0 => data_out0,
+        r0        => r0,
+        r1        => r1,
+        r2        => r2,
+        r3        => r3,
+        r4        => r4,
+        r5        => r5,
+        r6        => r6,
+        r7        => r7,
+        rd_reg0   => read0,
+        rd_reg1   => read1,
+        wr_reg    => write1,
+        wr_en     => wr_enable,
+        rst       => reset,
+        clk       => clk,
+        wr_data   => data_in1,
+        out_data0 =>data_out0,
         out_data1 => data_out1
     );
 

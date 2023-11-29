@@ -8,20 +8,26 @@ end;
 architecture a_ula_tb of ula_tb is
     component ula
         port (
-        x, y : in unsigned(15 downto 0);
-        op : in unsigned(1 downto 0);
-        saida : out unsigned(15 downto 0)
+            x, y     : in unsigned(15 downto 0);
+            op       : in unsigned(1 downto 0);
+            saida    : out unsigned(15 downto 0);
+            carry    : out std_logic;
+            overflow : out std_logic
     );
     end component;
 
     signal x, y, saida : unsigned(15 downto 0);
     signal op : unsigned(1 downto 0);
+    signal carry, overflow : std_logic;
 
 begin
     utt: ula port map ( x => x, 
                         y => y, 
                         op => op,
-                        saida => saida);
+                        saida => saida,
+                        carry => carry,
+                        overflow => overflow
+                        );
 
     process
     begin

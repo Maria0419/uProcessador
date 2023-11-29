@@ -1,100 +1,123 @@
-MOV r1, #33     ; r1 = cte #33
-MOV r2, #1      ; r2 = ind
-MOV r3, #1      ; r3 = cte #1
-MOV r5, #17     ; r5 = cte #17
+mov r1, #33     ; r1 = cte #33
+mov r2, #1      ; r2 = indice
+mov r3, #1      ; r3 = cte #1
+mov r5, #17     ; r5 = cte #17
 
-; inicializa a ram com ram[i] = i
+; inicializa a ram com RAM[i] = i (de 1 a 32)
 inicializa_ram:
-    MOV a, #0
-    ADD a, r2
-    MOV @r2, a
-    ADD a, r3
-    MOV r2, a
-    CLR C
-    SUBB a, r1
-    JC inicializa_ram
+    ; RAM[indice] = indice
+    mov a, #0
+    add a, r2
+    mov @r2, a
+    ; indice++
+    add a, r3
+    mov r2, a
+    ; se indice < 33, continua loop
+    clr C
+    subb a, r1
+    jc inicializa_ram
 
-MOV r2, #2
+; reinicializa indice
+mov r2, #2
 
 ; itera pela memoria
 loop:
-    MOV a, @r2
-    MOV r4, a       ; r4 = contRAM
-    MOV a, #0
-    CLR C
-    SUBB a, r4      ; se o numero estiver na lista (aka dif de 0), é primo
-    JC primo
+    ; contRAM = RAM[indice]
+    mov a, @r2
+    mov r4, a
+    mov a, #0
+    ; se contRAM /= 0, esta na lista de primos
+    clr C
+    subb a, r4
+    jc primo
+    ; se contRAM = 0, foi retirado da lista de primos
 
-; incrementa e continua loop
-    MOV a, #0
-    ADD a, r2
-    ADD a, r3
-    MOV r2, a
-    CLR C
-    SUBB a, r5
-    JC loop
-    AJMP fim_loop
+    ; indice++
+    mov a, #0
+    add a, r2
+    add a, r3
+    mov r2, a
+    ; se indice < 17, continua loop
+    clr C
+    subb a, r5
+    jc loop
+    ; se indice >= 17, termina loop
+    ajmp fim_loop
 
 primo:
     ; encontra o primeiro multiplo do primo
-    MOV a, #0
-    ADD a, r4
-    ADD a, r4
-    MOV r6, a       ; r6 = ind2
+    ; indice2 = contRAM + contRAM
+    mov a, #0
+    add a, r4
+    add a, r4
+    mov r6, a
 
-; remove os multiplos
 loop2:
-    MOV a, #0
-    MOV @r6, a
-    ADD a, r6
-    ADD a, r4
-    MOV r6, a
-    CLR C
-    SUBB a, r1
-    JC loop2
+    ; RAM[indice2] = 0
+    mov a, #0
+    mov @r6, a
+    ; indice2 += contRAM (proximo multiplo)
+    add a, r6
+    add a, r4
+    mov r6, a
+    ; se indice2 < 33, continua loop
+    clr C
+    subb a, r1
+    jc loop2
 
-; incrementa e continua loop
-    MOV a, #0
-    ADD a, r2
-    ADD a, r3
-    MOV r2, a
-    CLR C
-    SUBB a, r5
-    JC loop
+    ; indice++
+    mov a, #0
+    add a, r2
+    add a, r3
+    mov r2, a
+    ; se indice < 17, continua loop
+    clr C
+    subb a, r5
+    jc loop
 
 fim_loop:
 
-MOV r2, #2
-MOV r5, #0      ; sera usado para mostrar os primos
+; reinicializa indice
+mov r2, #2
+mov r5, #0
 
-; ler a ram e armazenar no r6
+; itera pela memoria para leitura
 ler_ram:
-    MOV a, @r2
-    MOV r4, a       ; r4 = contRAM
-    MOV a, #0
-    CLR C
-    SUBB a, r4
-    JC mostrar
+    ; contRAM = RAM[indice]
+    mov a, @r2
+    mov r4, a
+    mov a, #0
+    ; se contRAM /= 0, esta na lista de primos
+    clr C
+    subb a, r4
+    jc mostrar
+    ; se contRAM = 0, foi retirado da lista de primos
 
-    ADD a, r2
-    ADD a, r3
-    MOV r2, a
-    CLR C
-    SUBB a, r1
-    JC ler_ram
-    AJMP fim_leitura
+    ; indice++
+    add a, r2
+    add a, r3
+    mov r2, a
+    ; se indice < 33, continua loop
+    clr C
+    subb a, r1
+    jc ler_ram
+    ; se indice >= 33, termina loop
+    ajmp fim_leitura
 
 mostrar:
-    MOV a, #0
-    ADD a, r4
-    MOV r5, a
-    MOV a, #0
-    ADD a, r2
-    ADD a, r3
-    MOV r2, a
-    CLR C
-    SUBB a, r1
-    JC ler_ram
+    ; r5 = contRAM (primo)
+    mov a, #0
+    add a, r4
+    mov r5, a
+    ; indice++
+    mov a, #0
+    add a, r2
+    add a, r3
+    mov r2, a
+    ; se indice < 33, continua loop
+    clr C
+    subb a, r1
+    jc ler_ram
 
 fim_leitura:
 nop

@@ -11,15 +11,20 @@ architecture a_uc_tb of uc_tb is
             clk, rst    : in std_logic;
             opcode      : in unsigned (3 downto 0);
 
-            ula_op      : out unsigned (1 downto 0);    --operacao da ula
-            rd0_sel     : out std_logic;                --'0' -> zero, '1' -> acumulador
-            rd1_sel     : out std_logic;                --'0' -> zero, '1' -> registrador src
-            wr_sel      : out std_logic;                --'0' -> registrador dest, '1' -> acumulador 
-            pc_wr       : out std_logic;                --atualizar o PC
-            ir_wr       : out std_logic;                --escrever instrucao no IR
-            jump_en     : out std_logic;                --habilitar salto
-            reg_wr_en   : out std_logic;                --escrever no RB
-            ula_sel     : out std_logic
+            estado      : out unsigned (1 downto 0);
+
+            ula_op      : out unsigned (1 downto 0);
+            rd0_sel     : out std_logic;
+            rd1_sel     : out std_logic;
+            wr_sel      : out std_logic;
+            pc_wr       : out std_logic;
+            jump_sel    : out unsigned (1 downto 0);
+            reg_wr_en   : out std_logic;
+            ula_sel     : out std_logic;
+            carry_wr_en : out std_logic;
+            carry_rst   : out std_logic;
+            ov_wr_en    : out std_logic;
+            ram_wr_en   : out std_logic
         );
     end component;
 
@@ -33,10 +38,14 @@ architecture a_uc_tb of uc_tb is
     signal rd1_sel     :  std_logic;                
     signal wr_sel      :  std_logic;                
     signal pc_wr       :  std_logic;              
-    signal ir_wr       :  std_logic;       
-    signal jump_en     :  std_logic;    
     signal reg_wr_en   :  std_logic;   
     signal ula_sel     :  std_logic;
+    signal jump_sel    :  unsigned (1 downto 0);
+    signal estado      :  unsigned (1 downto 0);
+    signal carry_wr_en :  std_logic;
+    signal carry_rst   :  std_logic;
+    signal ov_wr_en    :  std_logic;
+    signal ram_wr_en   :  std_logic;
 
 begin
     uut: uc port map (  
@@ -48,10 +57,14 @@ begin
         rd1_sel => rd1_sel,
         wr_sel => wr_sel,
         pc_wr => pc_wr,
-        ir_wr => ir_wr,
-        jump_en => jump_en,
+        jump_sel => jump_sel,
         reg_wr_en => reg_wr_en,
-        ula_sel => ula_sel
+        ula_sel => ula_sel,
+        estado => estado,
+        carry_wr_en => carry_wr_en,
+        carry_rst => carry_rst,
+        ov_wr_en => ov_wr_en,
+        ram_wr_en => ram_wr_en
     );
 
     reset_global: process
@@ -96,6 +109,16 @@ begin
         opcode <= "0101";
         wait for 3*period_time;
         opcode <= "0110";
+        wait for 3*period_time;
+        opcode <= "0111";
+        wait for 3*period_time;
+        opcode <= "1000";
+        wait for 3*period_time;
+        opcode <= "1001";
+        wait for 3*period_time;
+        opcode <= "1010";
+        wait for 3*period_time;
+        opcode <= "1110";
         wait for 3*period_time;
         opcode <= "1111";
         wait;
