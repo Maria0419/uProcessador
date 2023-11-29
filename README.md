@@ -1,5 +1,10 @@
 ﻿# uProcessador
+
 **a VHDL microprocessor**
+
+This microprocessor was made for the Computer Architecture and Organization course offered at Federal University of Technology — Paraná (UTFPR), by Computer Engineering students @annaravazzi and @Maria0419.
+
+The project was based on the Intel MCS-51 (Intel 8051) assembly, with 15 bits instructions.
 
 ## INSTRUCTION SET + OPCODES
 - 0x0 | 0000  -> NOP           
@@ -18,6 +23,7 @@
 
 
 ## INSTRUCTION (14-0)
+
 **opcode (14-11)**
 
 - NOP           -> --
