@@ -8,13 +8,13 @@ end;
 architecture a_processador_tb of processador_tb is
     component processador is
         port(
-        clk     : in std_logic;
-        rst     : in std_logic;
-        estado  : out unsigned (1 downto 0);
-        instr   : out unsigned (14 downto 0);
-        reg1    : out unsigned (15 downto 0);
-        reg2    : out unsigned (15 downto 0);
-        ula_out : out unsigned (15 downto 0)
+            clk                            : in std_logic;
+            rst                            : in std_logic;
+            estado                         : out unsigned (1 downto 0);
+            instr                          : out unsigned (14 downto 0);
+            reg1, reg2                     : out unsigned (15 downto 0);
+            ula_out                        : out unsigned (15 downto 0);
+            r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0)
         );
     end component;
 
@@ -24,6 +24,7 @@ architecture a_processador_tb of processador_tb is
     signal estado_s                  : unsigned (1 downto 0);
     signal instr_s                   : unsigned (14 downto 0);
     signal reg1_s, reg2_s, ula_out_s : unsigned (15 downto 0);
+    signal r0_s, r1_s, r2_s, r3_s, r4_s, r5_s, r6_s, r7_s : unsigned (15 downto 0);
 
 begin
 
@@ -34,7 +35,15 @@ begin
         instr   => instr_s,
         reg1    => reg1_s,
         reg2    => reg2_s,
-        ula_out => ula_out_s
+        ula_out => ula_out_s,
+        r0      => r0_s,
+        r1      => r1_s,
+        r2      => r2_s,
+        r3      => r3_s,
+        r4      => r4_s,
+        r5      => r5_s,
+        r6      => r6_s,
+        r7      => r7_s
     );
 
     -- reset global / simulation time / clock
@@ -51,7 +60,7 @@ begin
     -- controla tempo de simulacao
     sim_time_proc: process
     begin
-        wait for 103 us;
+        wait for 400 us;
         finished <= '1';
         wait;
     end process;

@@ -16,7 +16,7 @@ MOV A, #data  -> immediate (10-3)
 MOV A, @Ri    -> memory register (5-3)
 MOV @Ri, A    -> memory register (5-3)
 JC rel        -> relative address (7-0) (decimal)
-AJMP          -> address (7-0) (decimal)
+AJMP addr     -> address (7-0) (decimal)
 
 
 INSTRUCTION SET + OPCODES

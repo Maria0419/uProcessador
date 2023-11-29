@@ -8,13 +8,13 @@ use ieee.numeric_std.all;
 
 entity processador is
     port(
-        clk     : in std_logic;
-        rst     : in std_logic;
-        estado  : out unsigned (1 downto 0);
-        instr   : out unsigned (14 downto 0);
-        reg1    : out unsigned (15 downto 0);
-        reg2    : out unsigned (15 downto 0);
-        ula_out : out unsigned (15 downto 0)
+        clk                            : in std_logic;
+        rst                            : in std_logic;
+        estado                         : out unsigned (1 downto 0);
+        instr                          : out unsigned (14 downto 0);
+        reg1, reg2                     : out unsigned (15 downto 0);
+        ula_out                        : out unsigned (15 downto 0);
+        r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0)
     );
 end entity;
 
@@ -32,10 +32,11 @@ architecture a_processador of processador is
 
     component banco_reg is 
         port(
-            rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);
-            wr_data                  : in unsigned (15 downto 0);
-            out_data0, out_data1     : out unsigned (15 downto 0);
-            wr_en, clk, rst          : in std_logic
+            r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0);
+            rd_reg0, rd_reg1, wr_reg       : in unsigned (2 downto 0);
+            wr_data                        : in unsigned (15 downto 0);
+            out_data0, out_data1           : out unsigned (15 downto 0);
+            wr_en, clk, rst                : in std_logic
         );
     end component;
 
@@ -215,6 +216,14 @@ begin
         saida => mux_to_rb_wr
     );
     bancoreg1: banco_reg port map (
+        r0        => r0,
+        r1        => r1,
+        r2        => r2,
+        r3        => r3,
+        r4        => r4,
+        r5        => r5,
+        r6        => r6,
+        r7        => r7,
         rd_reg0   => mux_to_rb_rd0,
         rd_reg1   => mux_to_rb_rd1,
         wr_reg    => mux_to_rb_wr,

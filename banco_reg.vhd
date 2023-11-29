@@ -8,10 +8,11 @@ use ieee.numeric_std.all;
 
 entity banco_reg is
     port (
-        rd_reg0, rd_reg1, wr_reg : in unsigned (2 downto 0);    --registradores de leitura e escrita
-        wr_data                  : in unsigned (15 downto 0);   --dado a ser escrito
-        out_data0, out_data1     : out unsigned (15 downto 0);  --dados de saída
-        wr_en, clk, rst          : in std_logic                 --write enable (geral), clock e reset
+        r0, r1, r2, r3, r4, r5, r6, r7 : out unsigned (15 downto 0);  --conteudo dos registradores
+        rd_reg0, rd_reg1, wr_reg       : in unsigned (2 downto 0);    --registradores de leitura e escrita
+        wr_data                        : in unsigned (15 downto 0);   --dado a ser escrito
+        out_data0, out_data1           : out unsigned (15 downto 0);  --dados de saída
+        wr_en, clk, rst                : in std_logic                 --write enable (geral), clock e reset
     );
 end banco_reg;
 
@@ -142,5 +143,14 @@ begin
                                    sel      => rd_reg1,
                                    data_out => out_data1);
 
+    -- conteudo dos registradores internos
+    r0 <= data_out0;
+    r1 <= data_out1;
+    r2 <= data_out2;
+    r3 <= data_out3;
+    r4 <= data_out4;
+    r5 <= data_out5;
+    r6 <= data_out6;
+    r7 <= data_out7;
 
 end architecture;
