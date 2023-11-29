@@ -2,7 +2,7 @@
 
 **a VHDL microprocessor**
 
-This microprocessor was made for the Computer Architecture and Organization course offered at Federal University of Technology — Paraná (UTFPR), by Computer Engineering students @annaravazzi and @Maria0419.
+This microprocessor was made for the Computer Architecture and Organization course offered at Federal University of Technology — Paraná (UTFPR), by Computer Engineering students [@annaravazzi] and [@Maria0419].
 
 The project was based on the Intel MCS-51 (Intel 8051) assembly, with 15 bits instructions.
 
